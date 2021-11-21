@@ -4,10 +4,11 @@ import Footer from "../../components/Footer";
 import { FireIcon } from "@heroicons/react/solid";
 import FoodCover from "../../assets/img/food-cover.png";
 import DietImg from "../../assets/img/undraw_diet_ghvw.svg";
+import Styles from "./Calculator.module.css";
 
 export default function Calculator() {
   return (
-    <>
+    <div className={Styles.backgroundPattren}>
       <Header />
       <div className="flex flex-col md:flex-row h-screen">
         <div
@@ -16,14 +17,14 @@ export default function Calculator() {
         >
           {/* <img src={DietImg} alt="food" className="w-full h-full filter-none" /> */}
         </div>
-        <div className="flex-auto md:flex-1 mx-4 max-w-screen-md self-center">
+        <div className="flex-auto md:flex-1 mx-4 max-w-screen-md self-center bg-white rounded-md">
           <div className="text-center my-3">
             <h1 className="text-2xl font-bold">
               Harrist-Bennedict Callculator
             </h1>
             <h5 className="text-md">Count your need calorie here</h5>
           </div>
-          <div id="form" className="max-w-lg mx-auto">
+          <div id="form" className="max-w-lg mx-auto ">
             <div className="relative bg-blue-light rounded-md p-10">
               <FireIcon className="absolute left-0 top-0 h-5 w-5 m-2 text-white" />
               <h2 className="text-white text-center text-3xl">2782 Kcal</h2>
@@ -147,6 +148,6 @@ export default function Calculator() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

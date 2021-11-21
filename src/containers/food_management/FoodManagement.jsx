@@ -6,116 +6,115 @@ import Styles from "./FoodManagement.module.css";
 
 export default function FoodManagement() {
   return (
-    <div className={`h-screen  ${Styles.backgroundPattren}`}>
+    <div className={`h-full  ${Styles.backgroundPattren}`}>
       <Header />
-      <div className="max-w-screen-lg mx-auto">
-      <div
-        className={`bg-white p-4 my-8 mx-1 rounded-md shadow-lg`}
-      >
-        <div className="flex justify-between mb-4">
-          <h1 className="text-lg font-bold">Food Management</h1>
-          <a
-            href="#add-modal"
-            className="flex items-center text-md font-semibold rounded-md bg-blue-light text-white px-2"
-          >
-            <span>
-              <PlusIcon className="h-5 w-5" />
-            </span>
-            <span>Add Food</span>
-          </a>
-        </div>
-        <div>
-          <table className="table w-full table-zebra">
-            <thead className="">
-              <tr className="">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Photo</th>
-                <th>Kalori</th>
-                <th className="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="hover">
-                <td>1</td>
-                <td>Nasi Goreng</td>
-                <td>
-                  <div class="avatar">
-                    <div class="rounded-full w-12 h-12">
-                      <img
-                        src="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
-                        className="object-cover object-center"
-                      />
+      <div className="max-w-screen-lg h-screen mx-auto">
+        <div className={`bg-white p-4 my-8 mx-1 rounded-md shadow-lg`}>
+          <div className="flex justify-between mb-4">
+            <h1 className="text-lg font-bold">Food Management</h1>
+            <a
+              href="#add-modal"
+              className="flex items-center text-md font-semibold rounded-md bg-blue-light text-white px-2"
+            >
+              <span>
+                <PlusIcon className="h-5 w-5" />
+              </span>
+              <span>Add Food</span>
+            </a>
+          </div>
+          <div>
+            <table className="table w-full table-zebra">
+              <thead className="">
+                <tr className="">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Photo</th>
+                  <th>Kalori</th>
+                  <th className="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="hover">
+                  <td>1</td>
+                  <td>Nasi Goreng</td>
+                  <td>
+                    <div class="avatar">
+                      <div class="rounded-full w-12 h-12">
+                        <img
+                          src="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
+                          className="object-cover object-center"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>200</td>
-                <td>
-                  <div className="flex sm:flex-row flex-col justify-center items-center text-white">
-                    <a
-                      href="#edit-modal"
-                      className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
-                    >
-                      <span>
-                        <PencilAltIcon className="h-4 w-4" />
-                      </span>
-                      <span>Edit</span>
-                    </a>
-                    <a
-                      href="/food_management/delete_food"
-                      className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
-                    >
-                      <span>
-                        <TrashIcon className="h-4 w-4" />
-                      </span>
-                      <span>Delete</span>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr className="hover">
-                <td>2</td>
-                <td>Nasi Goreng</td>
-                <td>
-                  <div class="avatar">
-                    <div class="rounded-full w-12 h-12">
-                      <img
-                        src="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
-                        className="object-cover object-center"
-                      />
+                  </td>
+                  <td>200</td>
+                  <td>
+                    <div className="flex sm:flex-row flex-col justify-center items-center text-white">
+                      <a
+                        href="#edit-modal"
+                        className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
+                      >
+                        <span>
+                          <PencilAltIcon className="h-4 w-4" />
+                        </span>
+                        <span>Edit</span>
+                      </a>
+                      <a
+                        href="/food_management/delete_food"
+                        className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
+                      >
+                        <span>
+                          <TrashIcon className="h-4 w-4" />
+                        </span>
+                        <span>Delete</span>
+                      </a>
                     </div>
-                  </div>
-                </td>
-                <td>200</td>
-                <td className="">
-                  <div className="flex sm:flex-row flex-col justify-center items-center text-white">
-                    <a
-                      href="#edit-modal"
-                      className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
-                    >
-                      <span>
-                        <PencilAltIcon className="h-4 w-4" />
-                      </span>
-                      <span>Edit</span>
-                    </a>
-                    <a
-                      href="/food_management/delete_food"
-                      className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
-                    >
-                      <span>
-                        <TrashIcon className="h-4 w-4" />
-                      </span>
-                      <span>Delete</span>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+                <tr className="hover">
+                  <td>2</td>
+                  <td>Nasi Goreng</td>
+                  <td>
+                    <div class="avatar">
+                      <div class="rounded-full w-12 h-12">
+                        <img
+                          src="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
+                          className="object-cover object-center"
+                        />
+                      </div>
+                    </div>
+                  </td>
+                  <td>200</td>
+                  <td className="">
+                    <div className="flex sm:flex-row flex-col justify-center items-center text-white">
+                      <a
+                        href="#edit-modal"
+                        className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
+                      >
+                        <span>
+                          <PencilAltIcon className="h-4 w-4" />
+                        </span>
+                        <span>Edit</span>
+                      </a>
+                      <a
+                        href="/food_management/delete_food"
+                        className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
+                      >
+                        <span>
+                          <TrashIcon className="h-4 w-4" />
+                        </span>
+                        <span>Delete</span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-      </div>
-     
+      <Footer />
+
       {/* Modal Add */}
       <div id="add-modal" class="modal">
         <div class="relative modal-box rounded-b-md">
