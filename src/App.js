@@ -11,9 +11,9 @@ function App() {
     <>
       {/* <Dashboard /> */}
       {/* <Home /> */}
-      {/* <Calculator /> */}
+      <Calculator />
       {/* <Food /> */}
-      <FoodManagement />
+      {/* <FoodManagement /> */}
     </>
   );
 }

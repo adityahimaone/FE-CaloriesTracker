@@ -2,12 +2,13 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FoodImg from "../../assets/img/pizza.png";
+import Styles from "./Food.module.css";
 
 export default function Food() {
   return (
-    <>
+    <div className={Styles.backgroundPattren}>
       <Header />
-      <div>
+      <div className={`mb-10 mx-4`}>
         <div className="my-4">
           <h1 className="text-2xl text-center font-bold md:text-4xl border-dashed border-b-4 border-blue-400 max-w-screen-xl mx-auto">
             Food List
@@ -96,6 +97,7 @@ export default function Food() {
           </div>
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
