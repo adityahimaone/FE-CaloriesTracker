@@ -44,7 +44,15 @@ export default function Navbar({ fixed }) {
                   className="px-5 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
                   href="#pablo"
                 >
-                  <span className="">About</span>
+                  <span className="">Calculator</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="px-5 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
+                  href="#pablo"
+                >
+                  <span className="">Food</span>
                 </a>
               </li>
               <li className="nav-item">
