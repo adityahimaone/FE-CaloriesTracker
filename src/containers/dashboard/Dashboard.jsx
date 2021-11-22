@@ -14,7 +14,7 @@ export default function Dashboard() {
     <div className={Styles.backgroundPattren}>
       <Header />
       <div className="container max-w-screen-lg mx-auto">
-        <div className="flex flex-col justify-center bg-white m-4 rounded-md shadow-2xl">
+        <div className="flex flex-col justify-center bg-white m-4 mt-8 rounded-md shadow-2xl">
           <div className="flex flex-col sm:flex-row sm:justify-between">
             <div class="flex flex-row mt-4 mx-5 items-center">
               <div className="m-2">
