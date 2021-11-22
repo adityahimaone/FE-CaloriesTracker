@@ -10,7 +10,7 @@ export default function Food() {
       <Header />
       <div className={`mb-10 mx-4`}>
         <div className="my-4">
-          <h1 className="text-2xl text-center font-bold md:text-4xl border-dashed border-b-4 border-blue-400 max-w-screen-xl mx-auto">
+          <h1 className="text-2xl text-center font-bold md:text-4xl w-32 md:w-40  rounded-b-sm border-b-4 border-blue-400  mx-auto">
             Food List
           </h1>
         </div>
