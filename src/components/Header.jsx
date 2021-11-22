@@ -68,7 +68,7 @@ export default function Navbar({ fixed }) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/#">
+                <Link to="/about">
                   <a
                     className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
                     href="#pablo"
