@@ -2,8 +2,20 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import WebImg from "../../assets/img/undraw_web_devices_re_m8sc.svg";
+import Lottie from "react-lottie";
+import animationData from "../../assets/img/about_hero.json";
+import Button from "../../elements/Button";
 
 export default function About() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <>
       <Header />
@@ -17,22 +29,21 @@ export default function About() {
             </span>
           </h1>
         </div>
-        <div className="flex flex-col-reverse md:flex-row my-8">
+        <div className="flex flex-col-reverse items-center md:flex-row my-8">
           <div className="flex-1 text-center">
             <h1 className="text-9xl text-blue-400">30</h1>
+            {/* <span className="font-mono text-9xl countdown">
+              <span style={{ value:30 }}></span>
+            </span> */}
             <h5 className="text-sm my-4">
               Coba Aplikasi ini dalam 30 hari
               <br /> dan rasakan manfaatnya
             </h5>
-            <a
-              href="/#"
-              className="bg-blue-light text-white rounded-md px-4 py-1"
-            >
-              Start For Free
-            </a>
+            <Button isPrimary name="START FOR FREE" link="#" />
           </div>
           <div className="flex-1 mx-auto">
-            <img src={WebImg} alt="web img" className="max-w-sm" />
+            {/* <img src={WebImg} alt="web img" className="max-w-sm" /> */}
+            <Lottie options={defaultOptions} height={320} width={320} />
           </div>
         </div>
         <div className="my-8">
@@ -41,7 +52,7 @@ export default function About() {
           </h2>
           <div className="flex flex-col md:flex-row max-w-screen-lg mx-auto">
             <a className="flex-grow text-center text-white rounded-md mx-4 py-5 my-2 bg-blue-light text-xl shadow-lg">
-              GraphQl
+              GraphQL
             </a>
             <a className="flex-grow text-center text-white rounded-md mx-4 py-5 my-2 bg-blue-light text-xl shadow-lg">
               ReactJS
