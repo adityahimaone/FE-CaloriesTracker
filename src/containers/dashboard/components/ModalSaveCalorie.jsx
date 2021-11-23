@@ -1,39 +1,32 @@
 import React from "react";
-import Button from "../../../elements/Button";
-import InputText from "../../../elements/InputText";
-import { FireIcon } from "@heroicons/react/solid";
 
-export default function CalculatorInput() {
+export default function ModalSaveCalorie() {
   return (
-    <div className="flex-1 self-center ">
-      <div className="bg-white rounded-md mt-8 md:mt-0 p-2 shadow-lg max-w-md mx-auto">
-        <div className="text-center my-3">
-          <h1 className="text-2xl font-bold">Harrist-Bennedict Callculator</h1>
-          <h5 className="text-md">Count your need calorie here</h5>
+    <div id="save-calorie-modal" className="modal">
+      <div className="relative modal-box rounded-b-md">
+        <div className="bg-blue-400 absolute inset-x-0 top-0 py-3 rounded-t-md">
+          <h1 className="text-center text-xl font-bold text-white">
+            Save Calorie Need
+          </h1>
         </div>
-        <div id="form" className="max-w-lg mx-auto ">
-          <div className="relative bg-blue-light rounded-md p-10">
-            <FireIcon className="absolute left-0 top-0 h-5 w-5 m-2 text-white" />
-            <h2 className="text-white text-center text-3xl">2782 Kcal</h2>
-          </div>
+        <div className="mt-10">
           <div>
             <div className="form-control flex flex-row px-4 py-2 items-center">
-              <div className="flex-none w-36">
+              <div className="flex-none  w-36">
                 <label className="label">
                   <span className="label-text font-semibold">Berat Badan</span>
                 </label>
               </div>
               <div className="flex-auto ">
-                {/* <label className="input-group input-group-sm">
-                      <input
-                        type="number"
-                        placeholder="50"
-                        // value=""
-                        className="input input-bordered input-sm w-full"
-                      />
-                      <span className="font-semibold">KG</span>
-                    </label> */}
-                <InputText isPrimary type="number" spanTitle="KG" />
+                <label className="input-group input-group-sm">
+                  <input
+                    type="number"
+                    placeholder="50"
+                    // value=""
+                    className="input input-bordered input-sm w-full"
+                  />
+                  <span className="font-semibold">KG</span>
+                </label>
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -43,16 +36,15 @@ export default function CalculatorInput() {
                 </label>
               </div>
               <div className="flex-auto ">
-                {/* <label className="input-group input-group-sm">
-                      <input
-                        type="number"
-                        placeholder="150"
-                        // value=""
-                        className="input input-bordered input-sm w-full"
-                      />
-                      <span className="font-semibold">CM</span>
-                    </label> */}
-                <InputText isPrimary type="number" spanTitle="CM" />
+                <label className="input-group input-group-sm">
+                  <input
+                    type="number"
+                    placeholder="150"
+                    // value=""
+                    className="input input-bordered input-sm w-full"
+                  />
+                  <span className="font-semibold">CM</span>
+                </label>
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -62,16 +54,15 @@ export default function CalculatorInput() {
                 </label>
               </div>
               <div className="flex-auto ">
-                {/* <label className="input-group input-group-sm">
-                      <input
-                        type="number"
-                        placeholder="25"
-                        // value=""
-                        className="input input-bordered input-sm w-full"
-                      />
-                      <span className="font-semibold">Tahun</span>
-                    </label> */}
-                <InputText isPrimary type="number" spanTitle="Tahun" />
+                <label className="input-group input-group-sm">
+                  <input
+                    type="number"
+                    placeholder="25"
+                    // value=""
+                    className="input input-bordered input-sm w-full"
+                  />
+                  <span className="font-semibold">Tahun</span>
+                </label>
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -124,10 +115,26 @@ export default function CalculatorInput() {
                 </select>
               </div>
             </div>
-            <div className="flex my-3">
-              <Button isPrimary isBlock name="Calculate" link="#" />
+            <div>
+              {/* <button className="bg-blue-light text-white font-bold w-full py-2 my-2 rounded-md hover:bg-yellow-light  focus:ring-2 focus:ring-yellow-light">
+                  Save Calorie Need
+                </button> */}
             </div>
           </div>
+        </div>
+        <div class="modal-action">
+          <a
+            href="#"
+            class="bg-green-400 text-white py-2 px-3 rounded-md hover:bg-green-500"
+          >
+            Submit
+          </a>
+          <a
+            href="#"
+            class="bg-red-400 text-white py-2 px-3 rounded-md hover:bg-red-500"
+          >
+            Close
+          </a>
         </div>
       </div>
     </div>
