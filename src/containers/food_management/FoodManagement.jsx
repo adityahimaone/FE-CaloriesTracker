@@ -1,10 +1,18 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { PlusIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { PlusIcon } from "@heroicons/react/solid";
 import Styles from "./FoodManagement.module.css";
+import TableRow from "./components/TableRow";
+import ModalAdd from "./components/ModalAdd";
+import ModalEdit from "./components/ModalEdit";
+import gqlFood from "../../graphql/GqlFoodManagement";
 
-export default function FoodManagement() {
+export default function FoodManagement(props) {
+  console.log("FoodManagement", gqlFood(props.DataGetFoods));
+  console.log("FoodManagement 2", gqlFood().DataGetFoods);
+  // console.log("FoodManagement 3", {DataGetFoods: props.DataGetFoods});
+  // console.log({DataGetFoods2})
   return (
     <div className={`h-full  ${Styles.backgroundPattren}`}>
       <Header />
@@ -34,163 +42,19 @@ export default function FoodManagement() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="hover">
-                  <td>1</td>
-                  <td>Nasi Goreng</td>
-                  <td>
-                    <div class="avatar">
-                      <div class="rounded-full w-12 h-12">
-                        <img
-                          src="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
-                          className="object-cover object-center"
-                        />
-                      </div>
-                    </div>
-                  </td>
-                  <td>200</td>
-                  <td>
-                    <div className="flex sm:flex-row flex-col justify-center items-center text-white">
-                      <a
-                        href="#edit-modal"
-                        className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
-                      >
-                        <span>
-                          <PencilAltIcon className="h-4 w-4" />
-                        </span>
-                        <span>Edit</span>
-                      </a>
-                      <a
-                        href="/food_management/delete_food"
-                        className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
-                      >
-                        <span>
-                          <TrashIcon className="h-4 w-4" />
-                        </span>
-                        <span>Delete</span>
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="hover">
-                  <td>2</td>
-                  <td>Nasi Goreng</td>
-                  <td>
-                    <div class="avatar">
-                      <div class="rounded-full w-12 h-12">
-                        <img
-                          src="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
-                          className="object-cover object-center"
-                        />
-                      </div>
-                    </div>
-                  </td>
-                  <td>200</td>
-                  <td className="">
-                    <div className="flex sm:flex-row flex-col justify-center items-center text-white">
-                      <a
-                        href="#edit-modal"
-                        className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
-                      >
-                        <span>
-                          <PencilAltIcon className="h-4 w-4" />
-                        </span>
-                        <span>Edit</span>
-                      </a>
-                      <a
-                        href="/food_management/delete_food"
-                        className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
-                      >
-                        <span>
-                          <TrashIcon className="h-4 w-4" />
-                        </span>
-                        <span>Delete</span>
-                      </a>
-                    </div>
-                  </td>
-                </tr>
+                {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
+                  <TableRow key={food.id} food={food} />
+                ))}
               </tbody>
             </table>
           </div>
         </div>
       </div>
       <Footer />
-
       {/* Modal Add */}
-      <div id="add-modal" class="modal">
-        <div class="relative modal-box rounded-b-md">
-          <div className="bg-blue-400 absolute inset-x-0 top-0 py-3 rounded-t-md">
-            <h1 className="text-center text-xl font-bold text-white">
-              Input Food
-            </h1>
-          </div>
-          <div className="mt-10">
-            <div className="my-2">
-              <label className="text-sm font-semibold">Name Food</label>
-              <input type="text" className="w-full p-2 border rounded-md" />
-            </div>
-            <div className="my-2">
-              <label className="text-sm font-semibold">Kalori</label>
-              <input type="number" className="w-full p-2 border rounded-md" />
-            </div>
-            <div className="my-2">
-              <label className="text-sm font-semibold">Photo</label>
-              <input type="file" className="w-full p-2 border rounded-md" />
-            </div>
-          </div>
-          <div class="modal-action">
-            <a
-              href="#"
-              class="bg-green-400 text-white py-2 px-3 rounded-md hover:bg-green-500"
-            >
-              Submit
-            </a>
-            <a
-              href="#"
-              class="bg-red-400 text-white py-2 px-3 rounded-md hover:bg-red-500"
-            >
-              Close
-            </a>
-          </div>
-        </div>
-      </div>
+      <ModalAdd addFood={gqlFood().handleAddFood} />
       {/* Modal Edit */}
-      <div id="edit-modal" class="modal">
-        <div class="relative modal-box rounded-b-md">
-          <div className="bg-blue-400 absolute inset-x-0 top-0 py-3 rounded-t-md">
-            <h1 className="text-center text-xl font-bold text-white">
-              Edit Food
-            </h1>
-          </div>
-          <div className="mt-10">
-            <div className="my-2">
-              <label className="text-sm font-semibold">Name Food</label>
-              <input type="text" className="w-full p-2 border rounded-md" />
-            </div>
-            <div className="my-2">
-              <label className="text-sm font-semibold">Kalori</label>
-              <input type="number" className="w-full p-2 border rounded-md" />
-            </div>
-            <div className="my-2">
-              <label className="text-sm font-semibold">Photo</label>
-              <input type="file" className="w-full p-2 border rounded-md" />
-            </div>
-          </div>
-          <div class="modal-action">
-            <a
-              href="#"
-              class="bg-green-400 text-white py-2 px-3 rounded-md hover:bg-green-500"
-            >
-              Submit
-            </a>
-            <a
-              href="#"
-              class="bg-red-400 text-white py-2 px-3 rounded-md hover:bg-red-500"
-            >
-              Close
-            </a>
-          </div>
-        </div>
-      </div>
+      <ModalEdit />
     </div>
   );
 }

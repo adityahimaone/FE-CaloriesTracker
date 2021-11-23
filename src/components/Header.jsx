@@ -40,7 +40,7 @@ export default function Navbar({ fixed }) {
               <li className="nav-item ">
                 <Link to="/">
                   <a
-                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
+                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white border-b-4 border-transparent hover:border-yellow-light active:border-yellow-light rounded"
                     href="#pablo"
                   >
                     <span className="">Home</span>
@@ -50,7 +50,7 @@ export default function Navbar({ fixed }) {
               <li className="nav-item">
                 <Link to="/calculator">
                   <a
-                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
+                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white border-b-4 border-transparent hover:border-yellow-light active:border-yellow-light rounded"
                     href="#pablo"
                   >
                     <span className="">Calculator</span>
@@ -60,7 +60,7 @@ export default function Navbar({ fixed }) {
               <li className="nav-item">
                 <Link to="/food">
                   <a
-                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
+                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white border-b-4 border-transparent hover:border-yellow-light rounded"
                     href="#pablo"
                   >
                     <span className="">Food</span>
@@ -68,9 +68,9 @@ export default function Navbar({ fixed }) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/#">
+                <Link to="/about">
                   <a
-                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white hover:bg-green-400 rounded-md"
+                    className="px-5 py-2 flex text-xs uppercase font-bold leading-snug text-white border-b-4 border-transparent hover:border-yellow-light rounded"
                     href="#pablo"
                   >
                     <span className="">About</span>
@@ -80,13 +80,13 @@ export default function Navbar({ fixed }) {
               <li className="nav-item">
                 <Popover className="relative">
                   <Popover.Button className="px-5 flex">
-                    <div class="avatar">
+                    <div class="avatar hover:opacity-50 border-2 border-yellow-light rounded-full focus:ring-4 focus:ring-blue-600">
                       <div class="rounded-full w-10 h-10">
                         <img src="http://daisyui.com/tailwind-css-component-profile-1@56w.png" />
                       </div>
                     </div>
                   </Popover.Button>
-                  <Popover.Panel className="absolute z-10 lg:top-15 lg:right-0 bg-white rounded-md w-screen max-w-xs md:w-52">
+                  <Popover.Panel className="absolute z-10 lg:top-15 lg:right-0 bg-white rounded-md w-screen max-w-xs md:w-52 shadow-lg">
                     <div className="flex flex-wrap">
                       <div className="w-full font-medium">
                         <Link to="/user/dashboard" className="">
