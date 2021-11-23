@@ -12,6 +12,14 @@ const GetFoodsQuery = gql`
   }
 `;
 
+const AddFoodMutation = gql`
+  mutation addFood($object: calories_tracker_foods_insert_input!) {
+    insert_calories_tracker_foods_one(object: $object) {
+      id
+    }
+  }
+`;
+
 export default function GqlFoodManagement() {
   //Get Query
   const {
@@ -19,8 +27,28 @@ export default function GqlFoodManagement() {
     error: errGetFoods,
     data: DataGetFoods,
   } = useQuery(GetFoodsQuery);
+
+  //Add Mutation
+  const [addFood, { data: DataAddFood, loading: LoadingAddFood }] = useMutation(
+    AddFoodMutation,
+    {
+      refetchQueries: [GetFoodsQuery],
+    }
+  );
+
+  const handleAddFood = (e) => {
+    addFood({
+      variables: {
+        object: {
+          name: e.name,
+          calorie: e.calorie,
+          foodUrl: e.foodUrl,
+        },
+      },
+    });
+  };
+  console.log("func",handleAddFood);
   console.log("DataGetFoods", DataGetFoods);
   console.log("DataGetFoods Specific", DataGetFoods);
-  return { loadingGetFoods, errGetFoods, DataGetFoods };
+  return  { loadingGetFoods, errGetFoods, DataGetFoods, handleAddFood, LoadingAddFood, DataAddFood };
 }
-

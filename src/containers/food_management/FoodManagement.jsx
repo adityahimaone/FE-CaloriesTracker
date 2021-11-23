@@ -45,12 +45,6 @@ export default function FoodManagement(props) {
                 {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
                   <TableRow key={food.id} food={food} />
                 ))}
-                {/* <TableRow
-                  id="1"
-                  nameFood="Nasi Goreng"
-                  imageFood="https://d1uz88p17r663j.cloudfront.net/resized/b51227b42ac8f45a3b9eee1405782f67_AON-Okt-1_944_531.png"
-                  calorie="300"
-                /> */}
               </tbody>
             </table>
           </div>
@@ -58,7 +52,7 @@ export default function FoodManagement(props) {
       </div>
       <Footer />
       {/* Modal Add */}
-      <ModalAdd />
+      <ModalAdd addFood={gqlFood().handleAddFood} />
       {/* Modal Edit */}
       <ModalEdit />
     </div>

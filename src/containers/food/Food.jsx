@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import FoodImg from "../../assets/img/pizza.png";
 import Styles from "./Food.module.css";
 import Card from "./components/Card";
+import gqlFood from "../../graphql/GqlFoodManagement";
 
 export default function Food() {
   return (
@@ -16,12 +17,15 @@ export default function Food() {
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 max-w-screen-xl mx-auto">
-          <Card img={FoodImg} title="Bukan Pizza" calorie="350" />
-          <Card img={FoodImg} title="Bukan Pizza" calorie="450" />
-          <Card img={FoodImg} title="Bukan Pizza" calorie="550" />
-          <Card img={FoodImg} title="Bukan Pizza" calorie="650" />
-          <Card img={FoodImg} title="Bukan Pizza" calorie="750" />
-          <Card img={FoodImg} title="Bukan Pizza" calorie="850" />
+          {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
+            <Card
+              key={food.id}
+              img={food.foodUrl}
+              title={food.name}
+              calorie={food.calorie}
+            />
+          ))}
+          {/* <Card img={FoodImg} title="Bukan Pizza" calorie="350" /> */}
         </div>
       </div>
       <Footer />

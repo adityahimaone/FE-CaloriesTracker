@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function ModalAdd() {
+export default function ModalAdd(props) {
+  console.log("props form input", props);
+  const [state, setState] = React.useState({
+    name: "",
+    foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
+    calorie: 0,
+  });
+
+  const onChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newFood = {
+      name: state.name,
+      foodUrl: state.foodUrl,
+      calorie: state.calorie,
+    };
+    props.addFood(newFood);
+    setState({
+      name: "",
+      foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
+      calorie: 0,
+    });
+  };
+
   return (
     <div id="add-modal" class="modal">
       <div class="relative modal-box rounded-b-md">
@@ -9,27 +38,44 @@ export default function ModalAdd() {
             Input Food
           </h1>
         </div>
-        <div className="mt-10">
+        <div className="mt-10" onSubmit={onSubmit}>
           <div className="my-2">
             <label className="text-sm font-semibold">Name Food</label>
-            <input type="text" className="w-full p-2 border rounded-md" />
+            <input
+              type="text"
+              name="name"
+              value={state.name}
+              onChange={onChange}
+              className="w-full p-2 border rounded-md"
+            />
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Kalori</label>
-            <input type="number" className="w-full p-2 border rounded-md" />
+            <input
+              type="number"
+              name="calorie"
+              value={state.calorie}
+              onChange={onChange}
+              className="w-full p-2 border rounded-md"
+            />
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Photo</label>
-            <input type="file" className="w-full p-2 border rounded-md" />
+            <input
+              type="file"
+              name="foodUrl"
+              //   value={state.foodUrl}
+              className="w-full p-2 border rounded-md"
+            />
           </div>
         </div>
         <div class="modal-action">
-          <a
-            href="#"
+          <button
+            onClick={onSubmit}
             class="bg-green-400 text-white py-2 px-3 rounded-md hover:bg-green-500"
           >
             Submit
-          </a>
+          </button>
           <a
             href="#"
             class="bg-red-400 text-white py-2 px-3 rounded-md hover:bg-red-500"
