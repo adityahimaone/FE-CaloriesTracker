@@ -34,8 +34,8 @@ export default function ModalEdit(props) {
   };
 
   return (
-    <div id="edit-modal" class="modal">
-      <div class="relative modal-box rounded-b-md">
+    <div id={`edit-modal${id}`} className="modal">
+      <div className="relative modal-box rounded-b-md">
         <div className="bg-blue-400 absolute inset-x-0 top-0 py-3 rounded-t-md">
           <h1 className="text-center text-xl font-bold text-white">
             Edit Food

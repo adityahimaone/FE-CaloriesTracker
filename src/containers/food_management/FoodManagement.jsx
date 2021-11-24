@@ -44,14 +44,7 @@ export default function FoodManagement(props) {
               </thead>
               <tbody>
                 {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
-                  <>
-                    <TableRow
-                      key={food.id}
-                      food={food}
-                      // editFood={gqlFood().handleEditFood}
-                    />
-                  </>
-                  // console.log(food, "food")
+                  <TableRow key={food.id} food={food} />
                 ))}
               </tbody>
             </table>
@@ -61,8 +54,6 @@ export default function FoodManagement(props) {
       <Footer />
       {/* Modal Add */}
       <ModalAdd addFood={gqlFood().handleAddFood} />
-      {/* Modal Edit */}
-      {/* <ModalEdit editFood={gqlFood().handleEditFood} /> */}
     </div>
   );
 }

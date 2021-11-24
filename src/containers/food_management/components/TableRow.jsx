@@ -1,11 +1,12 @@
 import React from "react";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import ModalEdit from "./ModalEdit";
+import ModalDelete from "./ModalDelete";
 import gqlFood from "../../../graphql/GqlFoodManagement";
 
 export default function TableRow(props) {
   const { id, name, foodUrl, calorie } = props.food;
-  console.log(props, "tabel row");
+  // console.log(props.gqlFood().handleDeleteFood(id), "tabel row");
   return (
     <>
       <tr className="hover">
@@ -26,7 +27,7 @@ export default function TableRow(props) {
         <td>
           <div className="flex sm:flex-row flex-col justify-center items-center text-white">
             <a
-              href="#edit-modal"
+              href={`#edit-modal${id}`}
               className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
             >
               <span>
@@ -35,7 +36,7 @@ export default function TableRow(props) {
               <span>Edit</span>
             </a>
             <a
-              href="/food_management/delete_food"
+              href={`#delete-modal${id}`}
               className="flex flex-grow mx-1 justify-center  items-center bg-red-400 px-1 py-1 rounded-md"
             >
               <span>
@@ -47,6 +48,7 @@ export default function TableRow(props) {
         </td>
       </tr>
       <ModalEdit food={props.food} editFood={gqlFood().handleEditFood} />
+      <ModalDelete food={props.food} deleteFood={gqlFood().handleDeleteFood} />
     </>
   );
 }
