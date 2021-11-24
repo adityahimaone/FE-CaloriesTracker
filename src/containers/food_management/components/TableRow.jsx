@@ -1,9 +1,10 @@
 import React from "react";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import ModalEdit from "./ModalEdit";
 
 export default function TableRow(props) {
   const { id, name, foodUrl, calorie } = props.food;
-  console.log(props, "tabel row");
+  console.log(props.editFood, "tabel row");
   return (
     <tr className="hover">
       <td>{id}</td>
@@ -22,6 +23,7 @@ export default function TableRow(props) {
       <td>{calorie}</td>
       <td>
         <div className="flex sm:flex-row flex-col justify-center items-center text-white">
+          <ModalEdit food={props.food}/>
           <a
             href="#edit-modal"
             className="flex flex-grow mx-1 justify-center items-center bg-green-400 px-3 py-1 rounded-md"
