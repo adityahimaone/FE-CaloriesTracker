@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 export default function ModalAdd(props) {
-  console.log("props form input", props);
-  const [state, setState] = React.useState({
+  // console.log("props form input", props);
+  const [state, setState] = useState({
     name: "",
     foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
     calorie: 0,

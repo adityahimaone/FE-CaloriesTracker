@@ -6,11 +6,12 @@ import Styles from "./FoodManagement.module.css";
 import TableRow from "./components/TableRow";
 import ModalAdd from "./components/ModalAdd";
 import ModalEdit from "./components/ModalEdit";
-import gqlFood, {handleEditFood} from "../../graphql/GqlFoodManagement";
+import gqlFood from "../../graphql/GqlFoodManagement";
 
 export default function FoodManagement(props) {
-  console.log("FoodManagement", gqlFood(props.DataGetFoods));
-  console.log("func", handleEditFood);
+  // console.log("FoodManagement", gqlFood(props.DataGetFoods));
+  // console.log("func", handleEditFood);
+  // console.log("gqlfood", gqlFood().handleAddFood);
   // console.log("FoodManagement 3", {DataGetFoods: props.DataGetFoods});
   // console.log({DataGetFoods2})
   return (
@@ -43,11 +44,14 @@ export default function FoodManagement(props) {
               </thead>
               <tbody>
                 {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
-                  <TableRow
-                    key={food.id}
-                    food={food}
-                    // editFood={gqlFood().handleEditFood}
-                  />
+                  <>
+                    <TableRow
+                      key={food.id}
+                      food={food}
+                      // editFood={gqlFood().handleEditFood}
+                    />
+                  </>
+                  // console.log(food, "food")
                 ))}
               </tbody>
             </table>

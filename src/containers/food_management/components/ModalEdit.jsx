@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import gqlFood from "../../../graphql/GqlFoodManagement";
 
 export default function ModalEdit(props) {
-  console.log(props, "modal edit");
+  console.log("modal edit", props);
+  const { id, name, foodUrl, calorie } = props.food;
+  const [state, setState] = useState({
+    name: "",
+    foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
+    calorie: 0,
+  });
+
+  const onChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newFood = {
+      name: state.name,
+      foodUrl: state.foodUrl,
+      calorie: state.calorie,
+    };
+    props.editFood(id, newFood);
+    setState({
+      // ...state,
+      name: "",
+      foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
+      calorie: 0,
+    });
+  };
+
   return (
     <div id="edit-modal" class="modal">
       <div class="relative modal-box rounded-b-md">
@@ -10,12 +41,14 @@ export default function ModalEdit(props) {
             Edit Food
           </h1>
         </div>
-        <div className="mt-10">
+        <div className="mt-10" onSubmit={onSubmit}>
           <div className="my-2">
             <label className="text-sm font-semibold">Name Food</label>
             <input
               type="text"
-              // placeholder={name}
+              name="name"
+              placeholder={name}
+              onChange={onChange}
               className="w-full p-2 border rounded-md"
             />
           </div>
@@ -23,22 +56,28 @@ export default function ModalEdit(props) {
             <label className="text-sm font-semibold">Kalori</label>
             <input
               type="number"
-              // placeholder={calorie}
+              name="calorie"
+              placeholder={calorie}
+              onChange={onChange}
               className="w-full p-2 border rounded-md"
             />
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Photo</label>
-            <input type="file" className="w-full p-2 border rounded-md" />
+            <input
+              type="file"
+              name="foodUrl"
+              className="w-full p-2 border rounded-md"
+            />
           </div>
         </div>
         <div class="modal-action">
-          <a
-            href="#"
+          <button
+            onClick={onSubmit}
             class="bg-green-400 text-white py-2 px-3 rounded-md hover:bg-green-500"
           >
             Submit
-          </a>
+          </button>
           <a
             href="#"
             class="bg-red-400 text-white py-2 px-3 rounded-md hover:bg-red-500"
