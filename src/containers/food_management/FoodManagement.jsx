@@ -5,10 +5,19 @@ import { PlusIcon } from "@heroicons/react/solid";
 import Styles from "./FoodManagement.module.css";
 import TableRow from "./components/TableRow";
 import ModalAdd from "./components/ModalAdd";
-import ModalEdit from "./components/ModalEdit";
 import gqlFood from "../../graphql/GqlFoodManagement";
+import Lottie from "react-lottie";
+import animationData from "../../assets/img/loading.json";
 
 export default function FoodManagement(props) {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   // console.log("FoodManagement", gqlFood(props.DataGetFoods));
   // console.log("func", handleEditFood);
   // console.log("gqlfood", gqlFood().handleAddFood);
@@ -46,6 +55,17 @@ export default function FoodManagement(props) {
                 {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
                   <TableRow key={food.id} food={food} />
                 ))}
+                {gqlFood().loadingGetFoods ? (
+                  <tr className="">
+                    <td colspan="5">
+                      <Lottie
+                        options={defaultOptions}
+                        height={300}
+                        width={500}
+                      />
+                    </td>
+                  </tr>
+                ) : null}
               </tbody>
             </table>
           </div>

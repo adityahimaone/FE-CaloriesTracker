@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import WebImg from "../../assets/img/undraw_web_devices_re_m8sc.svg";
 import Lottie from "react-lottie";
 import animationData from "../../assets/img/about_hero.json";
 import Button from "../../elements/Button";

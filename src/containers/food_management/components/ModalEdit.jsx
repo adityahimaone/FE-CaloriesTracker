@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import gqlFood from "../../../graphql/GqlFoodManagement";
 
 export default function ModalEdit(props) {
   console.log("modal edit", props);

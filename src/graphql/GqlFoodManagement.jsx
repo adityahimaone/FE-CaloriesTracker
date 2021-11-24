@@ -112,9 +112,11 @@ export default function GqlFoodManagement() {
 
   return {
     loadingGetFoods,
-    errGetFoods,
     DataGetFoods,
     handleAddFood,
+    LoadingAddFood,
+    LoadingDeleteFood,
+    LoadingEditFood,
     handleEditFood,
     handleDeleteFood,
   };
