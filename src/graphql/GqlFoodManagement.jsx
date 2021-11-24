@@ -34,6 +34,14 @@ const EditFoodMutation = gql`
   }
 `;
 
+const DeleteFoodMutation = gql`
+  mutation deleteFood($id: Int!) {
+    delete_calories_tracker_foods(where: { id: { _eq: $id } }) {
+      affected_rows
+    }
+  }
+`;
+
 export default function GqlFoodManagement() {
   //Get Query
   const {
@@ -42,7 +50,7 @@ export default function GqlFoodManagement() {
     data: DataGetFoods,
   } = useQuery(GetFoodsQuery);
 
-  //Add Mutation
+  //Add Food Mutation
   const [
     addFood,
     { data: DataAddFood, loading: LoadingAddFood, error: ErrAddFood },
@@ -62,7 +70,7 @@ export default function GqlFoodManagement() {
     });
   };
 
-  //Edit Mutation
+  //Edit Food Mutation
   const [
     editFood,
     { data: DataEditFood, loading: LoadingEditFood, error: ErrEditFood },
@@ -82,6 +90,22 @@ export default function GqlFoodManagement() {
     });
   };
 
+  //Delete Food
+  const [
+    deleteFood,
+    { data: DataDeleteFood, loading: LoadingDeleteFood, error: ErrDeleteFood },
+  ] = useMutation(DeleteFoodMutation, {
+    refetchQueries: [GetFoodsQuery],
+  });
+
+  const handleDeleteFood = (id) => {
+    deleteFood({
+      variables: {
+        id,
+      },
+    });
+  };
+
   console.log("func", handleAddFood);
   console.log("DataGetFoods", DataGetFoods);
   console.log("DataGetFoods Specific", DataGetFoods);
@@ -92,6 +116,7 @@ export default function GqlFoodManagement() {
     DataGetFoods,
     handleAddFood,
     handleEditFood,
+    handleDeleteFood,
   };
 }
 
