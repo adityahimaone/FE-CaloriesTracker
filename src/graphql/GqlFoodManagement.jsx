@@ -71,15 +71,15 @@ export default function GqlFoodManagement() {
   });
 
   const handleEditFood = (id, e) => {
-    console.log("test edit")
-    // editFood({
-    //   variables: {
-    //     id,
-    //     calorie: e.calorie,
-    //     foodUrl: e.foodUrl,
-    //     name: e.name,
-    //   },
-    // });
+    console.log("test edit");
+    editFood({
+      variables: {
+        id,
+        calorie: e.calorie,
+        foodUrl: e.foodUrl,
+        name: e.name,
+      },
+    });
   };
 
   console.log("func", handleAddFood);
@@ -95,4 +95,4 @@ export default function GqlFoodManagement() {
   };
 }
 
-export const {handleEditFood} = GqlFoodManagement();
+// export const {handleEditFood} = GqlFoodManagement();
