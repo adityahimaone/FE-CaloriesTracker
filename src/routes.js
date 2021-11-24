@@ -6,6 +6,7 @@ import Calculator from "./containers/calculator/Calculator";
 import Food from "./containers/food/Food";
 import FoodManagement from "./containers/food_management/FoodManagement";
 import About from "./containers/about/About";
+import NotFound from "./containers/not_found/NotFound";
 
 export default function routes() {
   return (
@@ -17,7 +18,7 @@ export default function routes() {
         <Route path="/about" element={<About />} />
         <Route path="/user/dashboard" element={<Dashboard />} />
         <Route path="/user/food_management" element={<FoodManagement />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

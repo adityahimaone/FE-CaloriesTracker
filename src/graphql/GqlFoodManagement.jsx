@@ -20,6 +20,20 @@ const AddFoodMutation = gql`
   }
 `;
 
+const EditFoodMutation = gql`
+  mutation editFood($id: Int!, $calorie: Int, $foodUrl: String, $name: String) {
+    update_calories_tracker_foods_by_pk(
+      pk_columns: { id: $id }
+      _set: { calorie: $calorie, foodUrl: $foodUrl, name: $name }
+    ) {
+      id
+      name
+      foodUrl
+      calorie
+    }
+  }
+`;
+
 export default function GqlFoodManagement() {
   //Get Query
   const {
@@ -29,12 +43,12 @@ export default function GqlFoodManagement() {
   } = useQuery(GetFoodsQuery);
 
   //Add Mutation
-  const [addFood, { data: DataAddFood, loading: LoadingAddFood }] = useMutation(
-    AddFoodMutation,
-    {
-      refetchQueries: [GetFoodsQuery],
-    }
-  );
+  const [
+    addFood,
+    { data: DataAddFood, loading: LoadingAddFood, error: ErrAddFood },
+  ] = useMutation(AddFoodMutation, {
+    refetchQueries: [GetFoodsQuery],
+  });
 
   const handleAddFood = (e) => {
     addFood({
@@ -47,8 +61,38 @@ export default function GqlFoodManagement() {
       },
     });
   };
-  console.log("func",handleAddFood);
+
+  //Edit Mutation
+  const [
+    editFood,
+    { data: DataEditFood, loading: LoadingEditFood, error: ErrEditFood },
+  ] = useMutation(EditFoodMutation, {
+    refetchQueries: [GetFoodsQuery],
+  });
+
+  const handleEditFood = (id, e) => {
+    console.log("test edit")
+    // editFood({
+    //   variables: {
+    //     id,
+    //     calorie: e.calorie,
+    //     foodUrl: e.foodUrl,
+    //     name: e.name,
+    //   },
+    // });
+  };
+
+  console.log("func", handleAddFood);
   console.log("DataGetFoods", DataGetFoods);
   console.log("DataGetFoods Specific", DataGetFoods);
-  return  { loadingGetFoods, errGetFoods, DataGetFoods, handleAddFood, LoadingAddFood, DataAddFood };
+
+  return {
+    loadingGetFoods,
+    errGetFoods,
+    DataGetFoods,
+    handleAddFood,
+    handleEditFood,
+  };
 }
+
+export const {handleEditFood} = GqlFoodManagement();

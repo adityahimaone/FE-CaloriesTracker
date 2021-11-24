@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function ModalEdit() {
+export default function ModalEdit(props) {
+  console.log(props, "modal edit");
   return (
     <div id="edit-modal" class="modal">
       <div class="relative modal-box rounded-b-md">
@@ -12,11 +13,19 @@ export default function ModalEdit() {
         <div className="mt-10">
           <div className="my-2">
             <label className="text-sm font-semibold">Name Food</label>
-            <input type="text" className="w-full p-2 border rounded-md" />
+            <input
+              type="text"
+              // placeholder={name}
+              className="w-full p-2 border rounded-md"
+            />
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Kalori</label>
-            <input type="number" className="w-full p-2 border rounded-md" />
+            <input
+              type="number"
+              // placeholder={calorie}
+              className="w-full p-2 border rounded-md"
+            />
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Photo</label>
