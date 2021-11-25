@@ -7,6 +7,7 @@ import ProfileInfo from "./components/ProfileInfo";
 import CalorieStats from "./components/CalorieStats";
 import TabsGroup from "./components/TabsGroup";
 import ModalSaveCalorie from "./components/ModalSaveCalorie";
+import GqlDashboard from "../../graphql/GqlDashboard";
 
 export default function Dashboard() {
   return (
@@ -17,7 +18,7 @@ export default function Dashboard() {
           <ProfileInfo />
           <CalorieStats />
           <div className="mx-4 mb-4 ">
-            <TabsGroup />
+            <TabsGroup historyData={GqlDashboard().DataGetHistory} loading={GqlDashboard().LoadingGetHistory} />
           </div>
         </div>
       </div>

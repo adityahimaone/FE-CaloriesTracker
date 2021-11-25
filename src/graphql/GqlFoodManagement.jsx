@@ -121,5 +121,3 @@ export default function GqlFoodManagement() {
     handleDeleteFood,
   };
 }
-
-// export const {handleEditFood} = GqlFoodManagement();

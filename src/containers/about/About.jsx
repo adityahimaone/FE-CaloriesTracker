@@ -18,7 +18,7 @@ export default function About() {
   return (
     <>
       <Header />
-      <div className="max-w-screen-xl h-screen mx-auto mt-4 md:mt-8">
+      <div className="max-w-screen-xl mx-auto mt-4 md:mt-8">
         <div className="mx-auto max-w-screen-lg ">
           <h1 className="text-xl md:text-2xl font-semibold text-center">
             <span className="text-blue-light">Daily Calorie </span>
