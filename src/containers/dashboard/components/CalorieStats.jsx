@@ -3,10 +3,13 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { FireIcon, PencilAltIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
 import TabsGroup from "./TabsGroup";
+import HistorySum from "./HistorySum";
+import dataSumHistory from "./dataSumHistory";
 
 export default function CalorieStats(props) {
   // console.log("tbas group",TabsGroup());
-  const calorieNow = 792;
+  console.log("props", dataSumHistory());
+  const calorieNow = 888;
   const calorieGoal = props.getUser?.calories_tracker_users[0].calorieNeed;
   const percentage = (calorieNow / calorieGoal) * 100;
   const finalCalorie = percentage.toFixed(0);
@@ -53,7 +56,7 @@ export default function CalorieStats(props) {
           <div class="flex items-center flex-wrap w-full h-36 sm:h-auto">
             <div class="max-w-lg mx-auto text-center flex flex-row items-center text-white">
               <div>
-                <h1 className="text-4xl font-bold">792</h1>
+                <h1 className="text-4xl font-bold">{calorieNow}</h1>
                 <h1 className="text-2xl">/ {calorieGoal}</h1>
               </div>
               <div>

@@ -38,6 +38,7 @@ const AddHistory = gql`
   }
 `;
 
+
 export default function GqlDashboard() {
   // Get Food History Now
   const {
@@ -70,7 +71,7 @@ export default function GqlDashboard() {
       variables: {
         object: {
           id_user: id_user,
-          id_food: food.id,
+          id_food: food.id_food,
           date: "now()",
         },
       },
