@@ -3,7 +3,7 @@ import { Tab } from "@headlessui/react";
 import CardFood from "./CardFood";
 import Lottie from "react-lottie";
 import animationData from "../../../assets/img/loading.json";
-import Button from "../../../elements/Button";
+import HistorySum from "./HistorySum";
 
 export default function TabsGroup(props) {
   console.log("handleAddHistory", props.addHistory);
@@ -35,76 +35,94 @@ export default function TabsGroup(props) {
     props.addHistory(id_user, newHistory);
     setState(null);
   };
+
+  let sumCalorie = 0;
+  const sumCalorieFood = (calorie) => {
+    sumCalorie = sumCalorie + calorie;
+    // console.log("sumCalorie", sumCalorie);
+    return sumCalorie;
+  };
+  console.log("sumCalorie", sumCalorieFood);
   return (
-    <Tab.Group>
-      <Tab.List className=" w-full tabs">
-        <Tab
-          className={({ selected }) =>
-            selected ? "tab tab-lifted tab-active" : "tab tab-lifted"
-          }
-        >
-          Histories
-        </Tab>
-        <Tab
-          className={({ selected }) =>
-            selected ? "tab tab-lifted tab-active" : "tab tab-lifted"
-          }
-        >
-          Input Food
-        </Tab>
-        <div className="flex-grow tab tab-lifted" />
-      </Tab.List>
-      <Tab.Panels>
-        <Tab.Panel className="bg-white max-w-full p-2 sm:p-2 border border-gray-300 border-t-0  rounded-b-lg border-opacity-100">
-          {props.historyData?.calories_tracker_histories.map((item) => (
-            <CardFood
-              key={item.id}
-              title={item.food.name}
-              image={item.food.foodUrl}
-              calorie={item.food.calorie}
-            />
-          ))}
-          {props.loading ? (
-            <div className="mx-auto">
-              <Lottie options={defaultOptions} height={300} width={500} />
-            </div>
-          ) : null}
-          {/* <CardFood
+    sumCalorieFood,
+    (
+      <Tab.Group>
+        <Tab.List className=" w-full tabs">
+          <Tab
+            className={({ selected }) =>
+              selected ? "tab tab-lifted tab-active" : "tab tab-lifted"
+            }
+          >
+            Histories
+          </Tab>
+          <Tab
+            className={({ selected }) =>
+              selected ? "tab tab-lifted tab-active" : "tab tab-lifted"
+            }
+          >
+            Input Food
+          </Tab>
+          <div className="flex-grow tab tab-lifted" />
+        </Tab.List>
+        <Tab.Panels>
+          <Tab.Panel className="bg-white max-w-full p-2 sm:p-2 border border-gray-300 border-t-0  rounded-b-lg border-opacity-100">
+            {props.historyData?.calories_tracker_histories.map((item) => (
+              <>
+                <CardFood
+                  key={item.id}
+                  title={item.food.name}
+                  image={item.food.foodUrl}
+                  calorie={item.food.calorie}
+                />
+                <HistorySum dataHistory={sumCalorieFood(item.food.calorie)} />
+              </>
+            ))}
+            {props.loading ? (
+              <div className="mx-auto">
+                <Lottie options={defaultOptions} height={300} width={500} />
+              </div>
+            ) : null}
+            {/* <CardFood
             image="http://inibaru.id/media/5100/large/normal/b879e94c-9dfd-4b9d-afa6-4759066cdc60__large.jpg"
             title="Nasi Padang"
             calorie="360"
           /> */}
-        </Tab.Panel>
-        <Tab.Panel className="bg-gray-50 max-w-full p-2 sm:p-5 border border-t-0 border-opacity-100 rounded-b-lg h-60 items-center">
-          <div className="mx-auto max-w-xl" onSubmit={onSubmit}>
-            <div className="form-control flex flex-row px-4 py-2 items-center justify-items-center ">
-              <div className="flex-none mr-10 flex">
-                <label className="label">
-                  <span className="label-text font-semibold">Input Food</span>
-                </label>
-              </div>
-              <div className="flex-auto flex-grow">
-                <select class="select select-bordered w-full select-sm">
-                  <option disabled="" selected="">
-                    Choose Food
-                  </option>
-                  {props.foodData?.calories_tracker_foods.map((item) => (
-                    <option onChange={onChange} name={item.id} value={item.id}>
-                      {item.name}
+          </Tab.Panel>
+          <Tab.Panel className="bg-gray-50 max-w-full p-2 sm:p-5 border border-t-0 border-opacity-100 rounded-b-lg h-60 items-center">
+            <div className="mx-auto max-w-xl" onSubmit={onSubmit}>
+              <div className="form-control flex flex-row px-4 py-2 items-center justify-items-center ">
+                <div className="flex-none mr-10 flex">
+                  <label className="label">
+                    <span className="label-text font-semibold">Input Food</span>
+                  </label>
+                </div>
+                <div className="flex-auto flex-grow">
+                  <select
+                    class="select select-bordered w-full select-sm"
+                    onChange={onChange}
+                    name="select"
+                  >
+                    <option disabled="" selected="">
+                      Choose Food
                     </option>
-                  ))}
-                </select>
+                    {props.foodData?.calories_tracker_foods.map((item) => (
+                      <option value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
+              <button
+                onClick={onSubmit}
+                class="w-full bg-blue-light border rounded-md py-2 text-white font-medium focus:ring-4 focus:ring-yellow-light focus:ring-opacity-50 hover:bg-yellow-light shadow-lg"
+              >
+                Submit
+              </button>
             </div>
-            <button
-              onClick={onSubmit}
-              class="w-full bg-blue-light border rounded-md py-2 text-white font-medium focus:ring-4 focus:ring-yellow-light focus:ring-opacity-50 hover:bg-yellow-light shadow-lg"
-            >
-              Submit
-            </button>
-          </div>
-        </Tab.Panel>
-      </Tab.Panels>
-    </Tab.Group>
+          </Tab.Panel>
+        </Tab.Panels>
+      </Tab.Group>
+    )
   );
 }
