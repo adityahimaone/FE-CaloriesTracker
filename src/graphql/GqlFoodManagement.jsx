@@ -79,7 +79,6 @@ export default function GqlFoodManagement() {
   });
 
   const handleEditFood = (id, e) => {
-    console.log("test edit");
     editFood({
       variables: {
         id,

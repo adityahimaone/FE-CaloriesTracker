@@ -72,7 +72,7 @@ export default function TabsGroup(props) {
                 calorie={item.food.calorie}
               />
               {/* {let finalSum = } */}
-              {/* <DataSumHistory dataHistory={sumCalorieFood(item.food.calorie)} /> */}
+              <DataSumHistory dataHistory={sumCalorieFood(item.food.calorie)} />
               {/* {console.log("sumCalorie", sumCalorie)} */}
             </>
           ))}
@@ -81,11 +81,6 @@ export default function TabsGroup(props) {
               <Lottie options={defaultOptions} height={300} width={500} />
             </div>
           ) : null}
-          {/* <CardFood
-            image="http://inibaru.id/media/5100/large/normal/b879e94c-9dfd-4b9d-afa6-4759066cdc60__large.jpg"
-            title="Nasi Padang"
-            calorie="360"
-          /> */}
         </Tab.Panel>
         <Tab.Panel className="bg-gray-50 max-w-full p-2 sm:p-5 border border-t-0 border-opacity-100 rounded-b-lg h-60 items-center">
           <div className="mx-auto max-w-xl" onSubmit={onSubmit}>

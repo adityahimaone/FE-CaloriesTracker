@@ -9,7 +9,7 @@ export default function ProfileInfo(props) {
           <div class="avatar">
             <div class="rounded-full w-14 h-14">
               <img
-                src="http://daisyui.com/tailwind-css-component-profile-1@56w.png"
+                src={props.getUser?.calories_tracker_users[0].avatarUrl}
                 alt="avatar"
               />
             </div>

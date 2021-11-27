@@ -38,6 +38,27 @@ const AddHistory = gql`
   }
 `;
 
+const EditCalorieNeed = gql`
+  mutation editCalorieNeed(
+    $calorieNeed: Int!
+    $height: Int!
+    $weight: Int!
+    $id_user: Int!
+  ) {
+    update_calories_tracker_users(
+      where: { id: { _eq: $id_user } }
+      _set: { calorieNeed: $calorieNeed, height: $height, weight: $weight }
+    ) {
+      affected_rows
+      returning {
+        id
+        calorieNeed
+        weight
+        height
+      }
+    }
+  }
+`;
 
 export default function GqlDashboard() {
   // Get Food History Now
@@ -78,6 +99,23 @@ export default function GqlDashboard() {
     });
   };
 
+  // Update Calorie Need
+  const [EditCalorieNeedMutation, { loading: LoadingEditCalorieNeed }] =
+    useMutation(EditCalorieNeed, {
+      refetchQueries: [GetUser],
+    });
+
+  const handleEditCalorieNeed = (id_user, e) => {
+    EditCalorieNeedMutation({
+      variables: {
+        id_user,
+        calorieNeed: e.calorieNeed,
+        weight: e.weight,
+        height: e.height,
+      },
+    });
+  };
+
   return {
     LoadingGetHistory,
     ErrGetHistory,
@@ -86,5 +124,6 @@ export default function GqlDashboard() {
     ErrGetUser,
     DataGetUser,
     handleAddHistory,
+    handleEditCalorieNeed,
   };
 }

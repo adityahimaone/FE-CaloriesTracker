@@ -32,7 +32,7 @@ export default function Dashboard() {
       <br />
       <Footer />
       {/* Modal Calorie Need */}
-      <ModalSaveCalorie />
+      <ModalSaveCalorie editCalorie={GqlDashboard().handleEditCalorieNeed} />
     </div>
   );
 }
