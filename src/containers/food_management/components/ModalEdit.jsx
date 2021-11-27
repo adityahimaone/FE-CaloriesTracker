@@ -12,6 +12,7 @@ export default function ModalEdit(props) {
 
   const [state, setState] = useState(initState);
 
+
   const onChange = (e) => {
     setState({
       ...state,
