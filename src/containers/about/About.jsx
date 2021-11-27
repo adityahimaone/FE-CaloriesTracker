@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import WebImg from "../../assets/img/undraw_web_devices_re_m8sc.svg";
 import Lottie from "react-lottie";
 import animationData from "../../assets/img/about_hero.json";
 import Button from "../../elements/Button";
@@ -19,7 +18,7 @@ export default function About() {
   return (
     <>
       <Header />
-      <div className="max-w-screen-xl h-screen mx-auto mt-4 md:mt-8">
+      <div className="max-w-screen-xl mx-auto mt-4 md:mt-8">
         <div className="mx-auto max-w-screen-lg ">
           <h1 className="text-xl md:text-2xl font-semibold text-center">
             <span className="text-blue-light">Daily Calorie </span>

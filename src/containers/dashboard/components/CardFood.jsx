@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function CardFood(props) {
+  // console.log("card", props.data);
+  // console.log("card", props);
   return (
     <div class="max-w-full mx-auto m-4 bg-white rounded-md shadow-md overflow-hidden md:max-w-full">
       <div class="md:flex">

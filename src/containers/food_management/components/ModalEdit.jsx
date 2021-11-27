@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import gqlFood from "../../../graphql/GqlFoodManagement";
 
 export default function ModalEdit(props) {
   console.log("modal edit", props);
   const { id, name, foodUrl, calorie } = props.food;
-  const [state, setState] = useState({
+
+  const initState = {
     name: "",
     foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
     calorie: 0,
-  });
+  };
+
+  const [state, setState] = useState(initState);
+
 
   const onChange = (e) => {
     setState({
@@ -25,12 +28,7 @@ export default function ModalEdit(props) {
       calorie: state.calorie,
     };
     props.editFood(id, newFood);
-    setState({
-      // ...state,
-      name: "",
-      foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
-      calorie: 0,
-    });
+    setState(initState);
   };
 
   return (
