@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import client from "./graphql/apollo-client";
 import { ApolloProvider } from "@apollo/client";
+import * as serviceWorker from "./firebase/serviceWorkers";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
@@ -19,3 +20,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorker.unregister();
