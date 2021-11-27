@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { app } from "../../../firebase/firebaseConfig";
 
 export default function ModalAdd(props) {
-  // console.log("props form input", props);
-  const [state, setState] = useState({
+  const initState = {
     name: "",
-    foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
+    foodUrl: "",
     calorie: 0,
-  });
+  };
+  const [state, setState] = useState(initState);
 
   const onChange = (e) => {
     setState({
@@ -23,13 +24,29 @@ export default function ModalAdd(props) {
       calorie: state.calorie,
     };
     props.addFood(newFood);
-    setState({
-      name: "",
-      foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
-      calorie: 0,
-    });
+    setState(initState);
   };
 
+  const onChangeImage = (e) => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    console.log("file = ", file);
+    console.log("storageRef = ", storageRef);
+    console.log("fileRef = ", fileRef);
+    fileRef.put(file).then((e) => {
+      console.log("Uploaded a file");
+      console.log("didalam e = ", e);
+      e.ref.getDownloadURL().then(function (downloadURL) {
+        console.log("File available at", downloadURL);
+        setState({
+          ...state,
+          foodUrl: downloadURL,
+        });
+      });
+    });
+  };
+  console.log("modal add", state);
   return (
     <div id="add-modal" class="modal">
       <div class="relative modal-box rounded-b-md">
@@ -64,7 +81,8 @@ export default function ModalAdd(props) {
             <input
               type="file"
               name="foodUrl"
-              //   value={state.foodUrl}
+              onChange={onChangeImage}
+              // value={state.foodUrl}
               className="w-full p-2 border rounded-md"
             />
           </div>
