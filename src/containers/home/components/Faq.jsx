@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { Disclosure } from "@headlessui/react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Faq() {
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+    });
+    AOS.refresh();
+  }, []);
   return (
     <div id="faq" className="my-10 mx-4">
-      <div className="my-4">
+      <div className="my-4" data-aos={"zoom-in"}>
         <h1 className="text-center text-2xl md:text-4xl font-bold">FAQ</h1>
       </div>
-      <div className="w-full max-w-2xl p-2 mx-auto bg-white rounded-md shadow-lg">
+      <div className="w-full max-w-2xl p-2 mx-auto bg-white rounded-md shadow-lg" data-aos={"flip-down"}>
         <Disclosure>
           {({ open }) => (
             <>
