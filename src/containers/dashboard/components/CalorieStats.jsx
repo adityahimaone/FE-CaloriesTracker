@@ -20,7 +20,7 @@ export default function CalorieStats(props) {
             </a>
           </div>
           <div>
-            <FireIcon className="h-5 w-5 text-white" />
+            <FireIcon className="h-5 w-5 text-white animate-ping" />
           </div>
         </div>
         <div className="flex flex-col mx-auto sm:flex-row  sm:flex-grow sm:mx-0">
