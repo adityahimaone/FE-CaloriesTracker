@@ -11,14 +11,17 @@ import GqlDashboard from "../../graphql/GqlDashboard";
 import gqlFood from "../../graphql/GqlFoodManagement";
 
 export default function Dashboard() {
-  console.log("Dashboard", GqlDashboard().DataGetUser);
+  console.log("Dashboard", GqlDashboard().DataGetCountHistory);
   return (
     <div className={Styles.backgroundPattren}>
       <Header />
       <div className="container max-w-screen-lg mx-auto">
         <div className="flex flex-col justify-center bg-white m-4 mt-8 rounded-md shadow-2xl">
           <ProfileInfo getUser={GqlDashboard().DataGetUser} />
-          <CalorieStats getUser={GqlDashboard().DataGetUser} />
+          <CalorieStats
+            getUser={GqlDashboard().DataGetUser}
+            getCountHistory={GqlDashboard().DataGetCountHistory}
+          />
           <div className="mx-4 mb-4 ">
             <TabsGroup
               historyData={GqlDashboard().DataGetHistory}

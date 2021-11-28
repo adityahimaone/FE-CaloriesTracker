@@ -60,6 +60,16 @@ const EditCalorieNeed = gql`
   }
 `;
 
+const GetCountHistory = gql`
+  query countHistory {
+    calories_tracker_histories_aggregate(where: { date: { _eq: "now()" } }) {
+      aggregate {
+        count
+      }
+    }
+  }
+`;
+
 export default function GqlDashboard() {
   // Get Food History Now
   const {
@@ -116,6 +126,13 @@ export default function GqlDashboard() {
     });
   };
 
+  // Get Count History
+  const {
+    loading: LoadingGetCountHistory,
+    error: ErrGetCountHistory,
+    data: DataGetCountHistory,
+  } = useQuery(GetCountHistory);
+
   return {
     LoadingGetHistory,
     ErrGetHistory,
@@ -125,5 +142,6 @@ export default function GqlDashboard() {
     DataGetUser,
     handleAddHistory,
     handleEditCalorieNeed,
+    DataGetCountHistory,
   };
 }

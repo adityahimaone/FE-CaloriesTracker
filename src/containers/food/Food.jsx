@@ -10,7 +10,7 @@ export default function Food() {
   return (
     <div className={Styles.backgroundPattren}>
       <Header />
-      <div className={`mb-10 mx-4 h-screen`}>
+      <div className={`mb-10 mx-4`}>
         <div className="my-4">
           <h1 className="text-2xl text-center font-bold md:text-4xl w-32 md:w-40  rounded-b-sm border-b-4 border-blue-400  mx-auto">
             Food List

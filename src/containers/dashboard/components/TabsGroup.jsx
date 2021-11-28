@@ -3,8 +3,6 @@ import { Tab } from "@headlessui/react";
 import CardFood from "./CardFood";
 import Lottie from "react-lottie";
 import animationData from "../../../assets/img/loading.json";
-import HistorySum from "./HistorySum";
-import DataSumHistory from "./dataSumHistory";
 import PropTypes from "prop-types";
 
 export default function TabsGroup(props) {
@@ -39,9 +37,14 @@ export default function TabsGroup(props) {
   console.log(onSubmit);
   let sumCalorie = 0;
   const sumCalorieFood = (calorie) => {
-    sumCalorie = sumCalorie + calorie;
-    return sumCalorie;
+    sumCalorie += calorie;
+    localStorage.setItem("data", sumCalorie);
   };
+
+  let items = props.historyData?.calories_tracker_histories
+    ? Object.keys(props.historyData.calories_tracker_histories).length
+    : 0;
+  localStorage.setItem("items", items);
   return (
     <Tab.Group>
       <Tab.List className=" w-full tabs">
@@ -71,9 +74,7 @@ export default function TabsGroup(props) {
                 image={item.food.foodUrl}
                 calorie={item.food.calorie}
               />
-              {/* {let finalSum = } */}
-              <DataSumHistory dataHistory={sumCalorieFood(item.food.calorie)} />
-              {/* {console.log("sumCalorie", sumCalorie)} */}
+              {sumCalorieFood(item.food.calorie)}
             </>
           ))}
           {props.loading ? (

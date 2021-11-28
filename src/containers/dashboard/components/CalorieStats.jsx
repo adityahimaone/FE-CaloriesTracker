@@ -2,14 +2,10 @@ import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { FireIcon, PencilAltIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
-import TabsGroup from "./TabsGroup";
-import HistorySum from "./HistorySum";
-import dataSumHistory from "./dataSumHistory";
 
 export default function CalorieStats(props) {
   // console.log("tbas group",TabsGroup());
-  console.log("props", dataSumHistory());
-  const calorieNow = 888;
+  const calorieNow = localStorage.getItem("data");
   const calorieGoal = props.getUser?.calories_tracker_users[0].calorieNeed;
   const percentage = (calorieNow / calorieGoal) * 100;
   const finalCalorie = percentage.toFixed(0);
@@ -71,7 +67,9 @@ export default function CalorieStats(props) {
               <div class="stat-figure text-primary">
                 <button class="btn loading btn-circle btn-lg bg-base-200 btn-ghost"></button>
               </div>
-              <div class="stat-value">2 / 7,300</div>
+              <div class="stat-value">
+                {localStorage.getItem("items")} / 7,300
+              </div>
               <div class="stat-title">Food Intake</div>
               <div class="stat-desc">
                 <progress
