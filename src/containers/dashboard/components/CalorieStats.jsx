@@ -67,14 +67,12 @@ export default function CalorieStats(props) {
               <div class="stat-figure text-primary">
                 <button class="btn loading btn-circle btn-lg bg-base-200 btn-ghost"></button>
               </div>
-              <div class="stat-value">
-                {localStorage.getItem("items")} / 7,300
-              </div>
-              <div class="stat-title">Food Intake</div>
+              <div class="stat-value">{localStorage.getItem("items")} / 3</div>
+              <div class="stat-title">Food Intake Per Day</div>
               <div class="stat-desc">
                 <progress
-                  value={percentage}
-                  max="100"
+                  value={localStorage.getItem("items")}
+                  max="3"
                   class="progress progress-accent"
                 ></progress>
               </div>
