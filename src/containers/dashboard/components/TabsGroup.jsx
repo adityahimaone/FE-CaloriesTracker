@@ -4,8 +4,11 @@ import CardFood from "./CardFood";
 import Lottie from "react-lottie";
 import animationData from "../../../assets/img/loading.json";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { setDashboard, setFoodIntake } from "../../../store/dashboardSlice";
 
 export default function TabsGroup(props) {
+  const dispatch = useDispatch();
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -16,6 +19,7 @@ export default function TabsGroup(props) {
   };
 
   const [state, setState] = useState({ selectFood: 0 });
+
   const id_user = 1;
   const onChange = (e) => {
     setState({
@@ -24,7 +28,6 @@ export default function TabsGroup(props) {
     });
   };
   let newState = parseInt(state.selectFood);
-  console.log("state", state.selectFood);
   const onSubmit = (e) => {
     e.preventDefault();
     const newHistory = {
@@ -34,17 +37,22 @@ export default function TabsGroup(props) {
     props.addHistory(id_user, newHistory);
     setState({ selectFood: 0 });
   };
-  console.log(onSubmit);
+
+  //save sum calorie to local storage
   let sumCalorie = 0;
   const sumCalorieFood = (calorie) => {
     sumCalorie += calorie;
-    localStorage.setItem("data", sumCalorie);
+    dispatch(setDashboard(sumCalorie));
   };
 
-  let items = props.historyData?.calories_tracker_histories
-    ? Object.keys(props.historyData.calories_tracker_histories).length
-    : 0;
-  localStorage.setItem("items", items);
+  //save total history to local storage
+  const sumFoodIntake = () => {
+    let items = props.historyData?.calories_tracker_histories
+      ? Object.keys(props.historyData.calories_tracker_histories).length
+      : 0;
+    dispatch(setFoodIntake(items));
+  };
+  sumFoodIntake();
   return (
     <Tab.Group>
       <Tab.List className=" w-full tabs">
