@@ -3,11 +3,12 @@ import { Tab } from "@headlessui/react";
 import CardFood from "./CardFood";
 import Lottie from "react-lottie";
 import animationData from "../../../assets/img/loading.json";
-import HistorySum from "./HistorySum";
-import DataSumHistory from "./dataSumHistory";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { setDashboard, setFoodIntake } from "../../../store/dashboardSlice";
 
 export default function TabsGroup(props) {
+  const dispatch = useDispatch();
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -18,6 +19,7 @@ export default function TabsGroup(props) {
   };
 
   const [state, setState] = useState({ selectFood: 0 });
+
   const id_user = 1;
   const onChange = (e) => {
     setState({
@@ -26,7 +28,6 @@ export default function TabsGroup(props) {
     });
   };
   let newState = parseInt(state.selectFood);
-  console.log("state", state.selectFood);
   const onSubmit = (e) => {
     e.preventDefault();
     const newHistory = {
@@ -36,12 +37,22 @@ export default function TabsGroup(props) {
     props.addHistory(id_user, newHistory);
     setState({ selectFood: 0 });
   };
-  console.log(onSubmit);
+
+  //save sum calorie to local storage
   let sumCalorie = 0;
   const sumCalorieFood = (calorie) => {
-    sumCalorie = sumCalorie + calorie;
-    return sumCalorie;
+    sumCalorie += calorie;
+    dispatch(setDashboard(sumCalorie));
   };
+
+  //save total history to local storage
+  const sumFoodIntake = () => {
+    let items = props.historyData?.calories_tracker_histories
+      ? Object.keys(props.historyData.calories_tracker_histories).length
+      : 0;
+    dispatch(setFoodIntake(items));
+  };
+  sumFoodIntake();
   return (
     <Tab.Group>
       <Tab.List className=" w-full tabs">
@@ -71,9 +82,7 @@ export default function TabsGroup(props) {
                 image={item.food.foodUrl}
                 calorie={item.food.calorie}
               />
-              {/* {let finalSum = } */}
-              <DataSumHistory dataHistory={sumCalorieFood(item.food.calorie)} />
-              {/* {console.log("sumCalorie", sumCalorie)} */}
+              {sumCalorieFood(item.food.calorie)}
             </>
           ))}
           {props.loading ? (

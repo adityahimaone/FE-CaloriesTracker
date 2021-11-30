@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import Button from "../../../elements/Button";
 import InputText from "../../../elements/InputText";
 import { FireIcon } from "@heroicons/react/solid";
+import { useDispatch, useSelector } from "react-redux";
+import { setCaloriesCount } from "../../../store/countCaloriesSlice";
 
 export default function CalculatorInput() {
+  const dispatch = useDispatch();
+  const caloriesResult = useSelector((state) => state.calories.countCalories);
+
   const initInput = {
     weight: 0,
     height: 0,
@@ -12,38 +17,57 @@ export default function CalculatorInput() {
     activity: 0,
   };
 
+  const initErr = {
+    weight: "",
+    height: "",
+    age: "",
+  };
+
   const [inputValue, setInputValue] = useState(initInput);
-  const [calories, setCalories] = useState(0);
+  const [err, setErr] = useState(initErr);
+
+  const regexDigit = /^(\d{1}|\d{2}|\d{3})$/;
   const onChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name === "weight") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "berat badan harus berupa 1-3 digit" });
+      }
+    }
+
+    if (name === "height") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "tinggi badan harus berupa 1-3 digit" });
+      }
+    }
+
+    if (name === "age") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "umur harus berupa 1-3 digit" });
+      }
+    }
+
     setInputValue({
       ...inputValue,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
-    console.log("state", inputValue);
   };
-
-  const countCalories = () => {
-    const { weight, height, age, jk, activity } = inputValue;
-    let calorie =
-      jk === "male"
-        ? (10 * weight + 6.25 * height - 5 * age + 5) * activity
-        : (10 * weight + 6.25 * height - 5 * age - 161) * activity;
-    const resultCalorie = calorie.toFixed(0);
-    return resultCalorie;
-  };
-  // console.log("function",countCalories());
-
+  console.log(err);
   const onSubmit = (e) => {
     e.preventDefault();
-    setCalories(countCalories);
+    if (err.weight === "" && err.height === "" && err.age === "") {
+      dispatch(setCaloriesCount(inputValue));
+    }
   };
 
-  const onReset = () => {
-    setInputValue(initInput);
-    setCalories(0);
-  };
-
-  // console.log("state calories",calories);
   const activityValue = [
     {
       id: 1,
@@ -82,7 +106,9 @@ export default function CalculatorInput() {
         <form id="form" className="max-w-lg mx-auto" onSubmit={onSubmit}>
           <div className="relative bg-blue-light rounded-md p-10">
             <FireIcon className="absolute left-0 top-0 h-5 w-5 m-2 text-white" />
-            <h2 className="text-white text-center text-3xl">{calories} Kcal</h2>
+            <h2 className="text-white text-center text-3xl">
+              {caloriesResult.calories} Kcal
+            </h2>
           </div>
           <div>
             <div className="form-control flex flex-row px-4 py-2 items-center">
@@ -103,6 +129,9 @@ export default function CalculatorInput() {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.weight ? (
+                  <span className="text-red-500 text-xs">{err.weight}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -123,6 +152,9 @@ export default function CalculatorInput() {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.height ? (
+                  <span className="text-red-500 text-xs">{err.height}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -143,6 +175,9 @@ export default function CalculatorInput() {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.age ? (
+                  <span className="text-red-500 text-xs">{err.age}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -202,7 +237,12 @@ export default function CalculatorInput() {
               </div>
             </div>
             <div className="flex my-3">
-              <button className="w-full bg-blue-light border rounded-md py-2 text-white font-medium focus:ring-4 focus:ring-yellow-light focus:ring-opacity-50 hover:bg-yellow-light shadow-lg" onClick={onSubmit}>Hitung</button>
+              <button
+                className="w-full bg-blue-light border rounded-md py-2 text-white font-medium focus:ring-4 focus:ring-yellow-light focus:ring-opacity-50 hover:bg-yellow-light shadow-lg"
+                onClick={onSubmit}
+              >
+                Hitung
+              </button>
             </div>
           </div>
         </form>

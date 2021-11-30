@@ -2,22 +2,48 @@ import React, { useState } from "react";
 import { app } from "../../../firebase/firebaseConfig";
 
 export default function ModalEdit(props) {
-  console.log("modal edit", props);
   const { id, name, foodUrl, calorie } = props.food;
 
   const initState = {
     name: "",
-    foodUrl: "https://sc04.alicdn.com/kf/HTB1F8QaMXXXXXc_XFXXq6xXFXXXv.jpg",
+    foodUrl: "",
     calorie: 0,
   };
 
-  const [state, setState] = useState(initState);
+  const initErr = {
+    name: "",
+    calorie: "",
+  };
 
+  const [state, setState] = useState(initState);
+  const [err, setErr] = useState(initErr);
+
+  const regexName = /^[A-Za-z ]*$/;
+  const regexCalorie = /^(\d{1}|\d{2}|\d{3}|\d{4})$/;
 
   const onChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name === "name") {
+      if (regexName.test(value)) {
+        setErr({ ...err, name: "" });
+      } else {
+        setErr({ ...err, name: "Nama makanan harus berupa huruf" });
+      }
+    }
+
+    if (name === "calorie") {
+      if (regexCalorie.test(value)) {
+        setErr({ ...err, calorie: "" });
+      } else {
+        setErr({ ...err, calorie: "Kalori makanan harus 1 - 4 digit" });
+      }
+    }
+
     setState({
       ...state,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -28,8 +54,10 @@ export default function ModalEdit(props) {
       foodUrl: state.foodUrl,
       calorie: state.calorie,
     };
-    props.editFood(id, newFood);
-    setState(initState);
+    if (err.name === "" && err.calorie === "" && state.foodUrl !== "") {
+      props.editFood(id, newFood);
+      setState(initState);
+    }
   };
 
   const onChangeImage = (e) => {
@@ -69,6 +97,9 @@ export default function ModalEdit(props) {
               onChange={onChange}
               className="w-full p-2 border rounded-md"
             />
+            {err.name ? (
+              <span className="text-red-500 text-xs">{err.name}</span>
+            ) : null}
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Kalori</label>
@@ -79,6 +110,9 @@ export default function ModalEdit(props) {
               onChange={onChange}
               className="w-full p-2 border rounded-md"
             />
+            {err.calorie ? (
+              <span className="text-red-500 text-xs">{err.calorie}</span>
+            ) : null}
           </div>
           <div className="my-2">
             <label className="text-sm font-semibold">Photo</label>
@@ -88,8 +122,35 @@ export default function ModalEdit(props) {
               onChange={onChangeImage}
               className="w-full p-2 border rounded-md"
             />
+            {state.foodUrl === "" ? (
+              <span className="text-red-500 text-xs">Image belum diuploud</span>
+            ) : (
+              <span className="text-green-500 text-xs">
+                Image sudah diuploud
+              </span>
+            )}
           </div>
         </div>
+        {err.name || err.calorie || state.foodUrl === "" ? (
+          <div class="alert alert-error rounded-md">
+            <div class="flex-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="w-6 h-6 mx-2 stroke-current"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                ></path>
+              </svg>
+              <label>Input masih belum lengkap</label>
+            </div>
+          </div>
+        ) : null}
         <div class="modal-action">
           <button
             onClick={onSubmit}

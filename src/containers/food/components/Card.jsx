@@ -5,7 +5,7 @@ export default function Card(props) {
   return (
     <div
       id="card"
-      className="flex flex-col flex-grow bg-white rounded-xl shadow-lg m-2"
+      className="flex flex-col flex-grow bg-white rounded-xl shadow-lg m-2 transform transition-all hover:scale-105"
     >
       <div>
         <img

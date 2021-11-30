@@ -1,14 +1,12 @@
 import React from "react";
 
 export default function CardFood(props) {
-  // console.log("card", props.data);
-  // console.log("card", props);
   return (
-    <div class="max-w-full mx-auto m-4 bg-white rounded-md shadow-md overflow-hidden md:max-w-full">
+    <div class="max-w-full mx-auto m-4 bg-white rounded-md shadow-md overflow-hidden md:max-w-full transform transition-all hover:translate-y-1 hover:bg-gray-100">
       <div class="md:flex">
         <div class="md:flex-shrink-0">
           <img
-            class="h-48 w-full object-cover md:max-h-28 md:w-48"
+            class="h-48 w-full object-cover md:max-h-28 md:w-48 transition ease-in duration-700"
             src={props.image}
             alt={props.title}
           />

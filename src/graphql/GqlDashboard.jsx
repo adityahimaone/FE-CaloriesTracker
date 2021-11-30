@@ -1,5 +1,11 @@
 import React from "react";
-import { gql, useQuery, useMutation, useSubscription } from "@apollo/client";
+import {
+  gql,
+  useQuery,
+  useLazyQuery,
+  useMutation,
+  useSubscription,
+} from "@apollo/client";
 
 const GetFoodHistory = gql`
   query MyQuery2($id_user: Int!) {
@@ -55,6 +61,16 @@ const EditCalorieNeed = gql`
         calorieNeed
         weight
         height
+      }
+    }
+  }
+`;
+
+const GetCountHistory = gql`
+  query countHistory {
+    calories_tracker_histories_aggregate(where: { date: { _eq: "now()" } }) {
+      aggregate {
+        count
       }
     }
   }
@@ -116,6 +132,13 @@ export default function GqlDashboard() {
     });
   };
 
+  // Get Count History
+  const {
+    loading: LoadingGetCountHistory,
+    error: ErrGetCountHistory,
+    data: DataGetCountHistory,
+  } = useQuery(GetCountHistory);
+
   return {
     LoadingGetHistory,
     ErrGetHistory,
@@ -125,5 +148,6 @@ export default function GqlDashboard() {
     DataGetUser,
     handleAddHistory,
     handleEditCalorieNeed,
+    DataGetCountHistory,
   };
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FireIcon } from "@heroicons/react/solid";
 
 export default function ModalSaveCalorie(props) {
-  console.log("ModalSaveCalorie Props", props);
   const initInput = {
     weight: 0,
     height: 0,
@@ -11,14 +10,50 @@ export default function ModalSaveCalorie(props) {
     activity: 0,
   };
 
+  const initErr = {
+    weight: "",
+    height: "",
+    age: "",
+  };
+
   const [inputValue, setInputValue] = useState(initInput);
   const [calories, setCalories] = useState(0);
+  const [err, setErr] = useState(initErr);
+
+  const regexDigit = /^(\d{1}|\d{2}|\d{3})$/;
+
   const onChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name === "weight") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "berat badan harus berupa 1-3 digit" });
+      }
+    }
+
+    if (name === "height") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "tinggi badan harus berupa 1-3 digit" });
+      }
+    }
+
+    if (name === "age") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "umur harus berupa 1-3 digit" });
+      }
+    }
+
     setInputValue({
       ...inputValue,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
-    console.log("state", inputValue);
   };
 
   const countCalories = () => {
@@ -28,7 +63,9 @@ export default function ModalSaveCalorie(props) {
         ? (10 * weight + 6.25 * height - 5 * age + 5) * activity
         : (10 * weight + 6.25 * height - 5 * age - 161) * activity;
     const resultCalorie = calorie.toFixed(0);
-    setCalories(resultCalorie);
+    if (err.weight === "" && err.height === "" && err.age === "") {
+      setCalories(resultCalorie);
+    }
     return resultCalorie;
   };
 
@@ -41,8 +78,10 @@ export default function ModalSaveCalorie(props) {
       weight: inputValue.weight,
       height: inputValue.height,
     };
-    props.editCalorie(id_user, newCalories);
-    setInputValue(initInput);
+    if (calories !== 0) {
+      props.editCalorie(id_user, newCalories);
+      setInputValue(initInput);
+    }
   };
 
   const activityValue = [
@@ -107,6 +146,9 @@ export default function ModalSaveCalorie(props) {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.weight ? (
+                  <span className="text-red-500 text-xs">{err.weight}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -127,6 +169,9 @@ export default function ModalSaveCalorie(props) {
                   />
                   <span className="font-semibold">CM</span>
                 </label>
+                {err.height ? (
+                  <span className="text-red-500 text-xs">{err.height}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -147,6 +192,9 @@ export default function ModalSaveCalorie(props) {
                   />
                   <span className="font-semibold">Tahun</span>
                 </label>
+                {err.age ? (
+                  <span className="text-red-500 text-xs">{err.age}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -206,9 +254,26 @@ export default function ModalSaveCalorie(props) {
               </div>
             </div>
             <div>
-              {/* <button className="bg-blue-light text-white font-bold w-full py-2 my-2 rounded-md hover:bg-yellow-light  focus:ring-2 focus:ring-yellow-light">
-                  Save Calorie Need
-                </button> */}
+              {err.weight || err.height || err.age ? (
+                <div class="alert alert-error rounded-md">
+                  <div class="flex-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      class="w-6 h-6 mx-2 stroke-current"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                      ></path>
+                    </svg>
+                    <label>Input masih salah</label>
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
