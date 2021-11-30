@@ -1,5 +1,11 @@
 import React from "react";
-import { gql, useQuery, useMutation, useSubscription } from "@apollo/client";
+import {
+  gql,
+  useQuery,
+  useLazyQuery,
+  useMutation,
+  useSubscription,
+} from "@apollo/client";
 
 const GetFoodHistory = gql`
   query MyQuery2($id_user: Int!) {

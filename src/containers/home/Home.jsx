@@ -5,8 +5,11 @@ import Hero from "./components/Hero";
 import Search from "./components/Search";
 import Feature from "./components/Feature";
 import Faq from "./components/Faq";
+import GqlHome from "../../graphql/GqlHome";
 
 export default function Home() {
+  const { onGetData, DataFood } = GqlHome();
+  console.log("data", onGetData);
   return (
     <>
       <Header />
@@ -14,7 +17,10 @@ export default function Home() {
         {/* Hero */}
         <Hero />
         {/* Search */}
-        <Search />
+        <Search
+          searchHandle={GqlHome().onGetData}
+          searchResult={GqlHome().DataFood}
+        />
         {/* Feature */}
         <Feature />
         {/* FAQ */}

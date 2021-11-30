@@ -8,7 +8,7 @@ import { setCaloriesCount } from "../../../store/countCaloriesSlice";
 export default function CalculatorInput() {
   const dispatch = useDispatch();
   const caloriesResult = useSelector((state) => state.calories.countCalories);
-  console.log(caloriesResult.calories);
+
   const initInput = {
     weight: 0,
     height: 0,
@@ -17,22 +17,55 @@ export default function CalculatorInput() {
     activity: 0,
   };
 
+  const initErr = {
+    weight: "",
+    height: "",
+    age: "",
+  };
+
   const [inputValue, setInputValue] = useState(initInput);
+  const [err, setErr] = useState(initErr);
+
+  const regexDigit = /^(\d{1}|\d{2}|\d{3})$/;
   const onChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name === "weight") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "berat badan harus berupa 1-3 digit" });
+      }
+    }
+
+    if (name === "height") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "tinggi badan harus berupa 1-3 digit" });
+      }
+    }
+
+    if (name === "age") {
+      if (regexDigit.test(value)) {
+        setErr({ ...err, [name]: "" });
+      } else {
+        setErr({ ...err, [name]: "umur harus berupa 1-3 digit" });
+      }
+    }
+
     setInputValue({
       ...inputValue,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
-    console.log("state", inputValue);
   };
-
+  console.log(err);
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(setCaloriesCount(inputValue));
-  };
-
-  const onReset = () => {
-    setInputValue(initInput);
+    if (err.weight === "" && err.height === "" && err.age === "") {
+      dispatch(setCaloriesCount(inputValue));
+    }
   };
 
   const activityValue = [
@@ -96,6 +129,9 @@ export default function CalculatorInput() {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.weight ? (
+                  <span className="text-red-500 text-xs">{err.weight}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -116,6 +152,9 @@ export default function CalculatorInput() {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.height ? (
+                  <span className="text-red-500 text-xs">{err.height}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
@@ -136,6 +175,9 @@ export default function CalculatorInput() {
                   />
                   <span className="font-semibold">KG</span>
                 </label>
+                {err.age ? (
+                  <span className="text-red-500 text-xs">{err.age}</span>
+                ) : null}
               </div>
             </div>
             <div className="form-control  flex flex-row px-4 py-2 items-center">
