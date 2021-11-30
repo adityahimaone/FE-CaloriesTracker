@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function ProfileInfo(props) {
-  console.log("Profile Info", props.getUser?.calories_tracker_users[0]);
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between">
       <div class="flex flex-row mt-4 mx-5 items-center">

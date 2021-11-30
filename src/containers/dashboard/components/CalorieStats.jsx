@@ -5,7 +5,6 @@ import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 
 export default function CalorieStats(props) {
-  // console.log("tbas group",TabsGroup());
   const calorieStats = useSelector((state) => state.dashboard);
   const calorieNow = calorieStats.calorieSum;
   const calorieGoal = props.getUser?.calories_tracker_users[0].calorieNeed;

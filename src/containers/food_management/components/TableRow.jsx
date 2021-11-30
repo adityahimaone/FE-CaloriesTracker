@@ -6,7 +6,7 @@ import gqlFood from "../../../graphql/GqlFoodManagement";
 
 export default function TableRow(props) {
   const { id, name, foodUrl, calorie } = props.food;
-  // console.log(props.gqlFood().handleDeleteFood(id), "tabel row");
+  const { handleEditFood, handleDeleteFood } = gqlFood();
   return (
     <>
       <tr className="hover">
@@ -47,8 +47,8 @@ export default function TableRow(props) {
           </div>
         </td>
       </tr>
-      <ModalEdit food={props.food} editFood={gqlFood().handleEditFood} />
-      <ModalDelete food={props.food} deleteFood={gqlFood().handleDeleteFood} />
+      <ModalEdit food={props.food} editFood={handleEditFood} />
+      <ModalDelete food={props.food} deleteFood={handleDeleteFood} />
     </>
   );
 }

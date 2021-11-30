@@ -18,11 +18,7 @@ export default function FoodManagement(props) {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  // console.log("FoodManagement", gqlFood(props.DataGetFoods));
-  // console.log("func", handleEditFood);
-  // console.log("gqlfood", gqlFood().handleAddFood);
-  // console.log("FoodManagement 3", {DataGetFoods: props.DataGetFoods});
-  // console.log({DataGetFoods2})
+  const { handleAddFood, DataGetFoods, loadingGetFoods } = gqlFood();
   return (
     <div className={`h-full  ${Styles.backgroundPattren}`}>
       <Header />
@@ -52,10 +48,10 @@ export default function FoodManagement(props) {
                 </tr>
               </thead>
               <tbody>
-                {gqlFood().DataGetFoods?.calories_tracker_foods.map((food) => (
+                {DataGetFoods?.calories_tracker_foods.map((food) => (
                   <TableRow key={food.id} food={food} />
                 ))}
-                {gqlFood().loadingGetFoods ? (
+                {loadingGetFoods ? (
                   <tr className="">
                     <td colspan="5">
                       <Lottie
@@ -73,7 +69,7 @@ export default function FoodManagement(props) {
       </div>
       <Footer />
       {/* Modal Add */}
-      <ModalAdd addFood={gqlFood().handleAddFood} />
+      <ModalAdd addFood={handleAddFood} />
     </div>
   );
 }

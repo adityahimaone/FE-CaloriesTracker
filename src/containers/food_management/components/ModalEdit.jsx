@@ -54,7 +54,7 @@ export default function ModalEdit(props) {
       foodUrl: state.foodUrl,
       calorie: state.calorie,
     };
-    if (err.name === "" && err.calorie === "") {
+    if (err.name === "" && err.calorie === "" && state.foodUrl !== "") {
       props.editFood(id, newFood);
       setState(initState);
     }
@@ -122,9 +122,16 @@ export default function ModalEdit(props) {
               onChange={onChangeImage}
               className="w-full p-2 border rounded-md"
             />
+            {state.foodUrl === "" ? (
+              <span className="text-red-500 text-xs">Image belum diuploud</span>
+            ) : (
+              <span className="text-green-500 text-xs">
+                Image sudah diuploud
+              </span>
+            )}
           </div>
         </div>
-        {err.name || err.calorie ? (
+        {err.name || err.calorie || state.foodUrl === "" ? (
           <div class="alert alert-error rounded-md">
             <div class="flex-1">
               <svg
@@ -140,7 +147,7 @@ export default function ModalEdit(props) {
                   d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
                 ></path>
               </svg>
-              <label>Input masih salah</label>
+              <label>Input masih belum lengkap</label>
             </div>
           </div>
         ) : null}

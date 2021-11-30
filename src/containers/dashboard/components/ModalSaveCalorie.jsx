@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FireIcon } from "@heroicons/react/solid";
 
 export default function ModalSaveCalorie(props) {
-  console.log("ModalSaveCalorie Props", props);
   const initInput = {
     weight: 0,
     height: 0,

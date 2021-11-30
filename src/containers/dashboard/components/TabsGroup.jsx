@@ -4,7 +4,7 @@ import CardFood from "./CardFood";
 import Lottie from "react-lottie";
 import animationData from "../../../assets/img/loading.json";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setDashboard, setFoodIntake } from "../../../store/dashboardSlice";
 
 export default function TabsGroup(props) {

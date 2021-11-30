@@ -10,6 +10,7 @@ export default function ModalAdd(props) {
 
   const initErr = {
     name: "",
+    foodUrl: "",
     calorie: "",
   };
 
@@ -52,7 +53,7 @@ export default function ModalAdd(props) {
       foodUrl: state.foodUrl,
       calorie: state.calorie,
     };
-    if (err.name === "" && err.calorie === "") {
+    if (err.name === "" && err.calorie === "" && state.foodUrl !== "") {
       props.addFood(newFood);
       setState(initState);
     }
@@ -79,7 +80,7 @@ export default function ModalAdd(props) {
   };
 
   return (
-    <div id="add-modal" class="modal">
+    <div id="add-modal" className="modal">
       <div class="relative modal-box rounded-b-md">
         <div className="bg-blue-400 absolute inset-x-0 top-0 py-3 rounded-t-md">
           <h1 className="text-center text-xl font-bold text-white">
@@ -121,9 +122,16 @@ export default function ModalAdd(props) {
               onChange={onChangeImage}
               className="w-full p-2 border rounded-md"
             />
+            {state.foodUrl === "" ? (
+              <span className="text-red-500 text-xs">Image belum diuploud</span>
+            ) : (
+              <span className="text-green-500 text-xs">
+                Image sudah diuploud
+              </span>
+            )}
           </div>
         </div>
-        {err.name || err.calorie ? (
+        {err.name || err.calorie || state.foodUrl === "" ? (
           <div class="alert alert-error rounded-md">
             <div class="flex-1">
               <svg
@@ -139,7 +147,7 @@ export default function ModalAdd(props) {
                   d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
                 ></path>
               </svg>
-              <label>Input masih salah</label>
+              <label>Input masih belum lengkap</label>
             </div>
           </div>
         ) : null}
