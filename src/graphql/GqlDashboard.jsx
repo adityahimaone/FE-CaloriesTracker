@@ -144,10 +144,12 @@ export default function GqlDashboard() {
     ErrGetHistory,
     DataGetHistory,
     LoadingGetUser,
+    LoadingAddHistory,
     ErrGetUser,
     DataGetUser,
     handleAddHistory,
     handleEditCalorieNeed,
     DataGetCountHistory,
+    LoadingEditCalorieNeed,
   };
 }

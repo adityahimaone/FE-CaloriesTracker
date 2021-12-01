@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 import { Tab } from "@headlessui/react";
 import CardFood from "./CardFood";
-import Lottie from "react-lottie";
-import animationData from "../../../assets/img/loading.json";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { setDashboard, setFoodIntake } from "../../../store/dashboardSlice";
+import LoadingMain from "../../../components/LoadingMain";
+import Loading from "../../../components/Loading";
 
 export default function TabsGroup(props) {
   const dispatch = useDispatch();
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   const [state, setState] = useState({ selectFood: 0 });
 
@@ -87,13 +79,14 @@ export default function TabsGroup(props) {
           ))}
           {props.loading ? (
             <div className="mx-auto">
-              <Lottie options={defaultOptions} height={300} width={500} />
+              <LoadingMain />
             </div>
           ) : null}
         </Tab.Panel>
         <Tab.Panel className="bg-gray-50 max-w-full p-2 sm:p-5 border border-t-0 border-opacity-100 rounded-b-lg h-60 items-center">
+          {props.loadingAddHistory ? <Loading /> : null}
           <div className="mx-auto max-w-xl" onSubmit={onSubmit}>
-            <div className="form-control flex flex-row px-4 py-2 items-center justify-items-center ">
+            <div className="form-control flex flex-row px-4 py-5 items-center justify-items-center ">
               <div className="flex-none mr-10 flex">
                 <label className="label">
                   <span className="label-text font-semibold">Input Food</span>

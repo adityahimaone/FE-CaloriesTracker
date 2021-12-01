@@ -18,6 +18,8 @@ export default function Dashboard() {
     LoadingGetHistory,
     handleAddHistory,
     handleEditCalorieNeed,
+    LoadingAddHistory,
+    LoadingEditCalorieNeed,
   } = GqlDashboard();
   const { DataGetFoods } = gqlFood();
 
@@ -37,6 +39,7 @@ export default function Dashboard() {
               loading={LoadingGetHistory}
               foodData={DataGetFoods}
               addHistory={handleAddHistory}
+              loadingAddHistory={LoadingAddHistory}
             />
           </div>
         </div>
@@ -44,7 +47,10 @@ export default function Dashboard() {
       <br />
       <Footer />
       {/* Modal Calorie Need */}
-      <ModalSaveCalorie editCalorie={handleEditCalorieNeed} />
+      <ModalSaveCalorie
+        editCalorie={handleEditCalorieNeed}
+        loadingEdit={LoadingEditCalorieNeed}
+      />
     </div>
   );
 }

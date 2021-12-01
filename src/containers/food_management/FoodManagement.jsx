@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { PlusIcon } from "@heroicons/react/solid";
@@ -6,19 +6,14 @@ import Styles from "./FoodManagement.module.css";
 import TableRow from "./components/TableRow";
 import ModalAdd from "./components/ModalAdd";
 import gqlFood from "../../graphql/GqlFoodManagement";
-import Lottie from "react-lottie";
-import animationData from "../../assets/img/loading.json";
+import LoadingMain from "../../components/LoadingMain";
 
 export default function FoodManagement(props) {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  const { handleAddFood, DataGetFoods, loadingGetFoods } = gqlFood();
+  const { handleAddFood, LoadingAddFood, DataGetFoods, loadingGetFoods } =
+    gqlFood();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   return (
     <div className={`h-full  ${Styles.backgroundPattren}`}>
       <Header />
@@ -29,6 +24,7 @@ export default function FoodManagement(props) {
             <a
               href="#add-modal"
               className="flex items-center text-md font-semibold rounded-md bg-blue-light text-white px-2"
+              onClick={handleShow}
             >
               <span>
                 <PlusIcon className="h-5 w-5" />
@@ -54,11 +50,7 @@ export default function FoodManagement(props) {
                 {loadingGetFoods ? (
                   <tr className="">
                     <td colspan="5">
-                      <Lottie
-                        options={defaultOptions}
-                        height={300}
-                        width={500}
-                      />
+                      <LoadingMain />
                     </td>
                   </tr>
                 ) : null}
@@ -69,7 +61,7 @@ export default function FoodManagement(props) {
       </div>
       <Footer />
       {/* Modal Add */}
-      <ModalAdd addFood={handleAddFood} />
+      <ModalAdd addFood={handleAddFood} loadingAdd={LoadingAddFood} />
     </div>
   );
 }

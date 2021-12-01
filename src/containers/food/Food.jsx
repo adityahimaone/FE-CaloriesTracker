@@ -4,9 +4,10 @@ import Footer from "../../components/Footer";
 import Styles from "./Food.module.css";
 import Card from "./components/Card";
 import gqlFood from "../../graphql/GqlFoodManagement";
+import LoadingMain from "../../components/LoadingMain";
 
 export default function Food() {
-  const { DataGetFoods } = gqlFood();
+  const { DataGetFoods, loadingGetFoods } = gqlFood();
   return (
     <div className={Styles.backgroundPattren}>
       <Header />
@@ -16,7 +17,8 @@ export default function Food() {
             Food List
           </h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 max-w-screen-xl mx-auto">
+        {loadingGetFoods ? <LoadingMain /> : null}
+        <div className="grid grid-cols-1 md:grid-cols-4 max-w-screen-xl mx-auto">       
           {DataGetFoods?.calories_tracker_foods.map((food) => (
             <Card
               key={food.id}

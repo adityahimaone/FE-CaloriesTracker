@@ -3,6 +3,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { FireIcon, PencilAltIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
+import AlertOverEat from "./AlertOverEat";
 
 export default function CalorieStats(props) {
   const calorieStats = useSelector((state) => state.dashboard);
@@ -80,6 +81,9 @@ export default function CalorieStats(props) {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <div className="mx-4 mb-4">{calorieNow >= calorieGoal ? <AlertOverEat/> : null}</div>
       </div>
     </div>
   );

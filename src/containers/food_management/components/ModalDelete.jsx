@@ -1,4 +1,5 @@
 import React from "react";
+import Loading from "../../../components/Loading";
 
 export default function ModalDelete(props) {
   const { id, name } = props.food;
@@ -17,6 +18,7 @@ export default function ModalDelete(props) {
         <div className="mt-10" onSubmit={onSubmit}>
           <h1>{`Apakah anda yakin ingin delete ${name} dengan id ${id}`}</h1>
         </div>
+        {props.loadingDelete ? <Loading /> : null}
         <div class="modal-action">
           <button
             onClick={onSubmit}
