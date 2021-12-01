@@ -95,7 +95,7 @@ export default function Login() {
         dispatch(login(authLogin));
         setSuccessLogin(true);
         console.log("User logged in");
-        console.log("data", data.calories_tracker_users);
+        console.log("Data Success Login", data.calories_tracker_users);
         navigate("/");
       }
     }
