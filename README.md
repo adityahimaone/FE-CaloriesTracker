@@ -1,12 +1,16 @@
-## PROJECT DONE HERE
+# PROJECT DONE HERE
 
-# Link App:
+## Link App:
 https://daily-calories-app.netlify.app/
 
-# Stack
+## Stack
 - ReactJS
 - GraphQL (Using Apollo Client & Hasura)
 - Firebase
 - tailwindcss & daisyui kit
 - Redux
+
+### Account Testing
+email: test@mail.com
+password: (Not Available Now)
 
