@@ -9,3 +9,4 @@ https://daily-calories-app.netlify.app/
 - Firebase
 - tailwindcss & daisyui kit
 - Redux
+
