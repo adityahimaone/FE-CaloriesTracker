@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import Loading from "../../components/Loading";
 import Header from "../../components/Header";
 import AlertFailedLogin from "../../components/AlertFailedLogin";
+import Styles from "./Login.module.css";
 
 export default function Login() {
   const { loginAcc, loading, data } = GqlLogin();
@@ -102,10 +103,10 @@ export default function Login() {
 
   console.log("input", err);
   return (
-    <div>
+    <div className={`${Styles.backgroundPattren} sm:bg-white`}>
       <Header />
       <div className="h-screen flex justify-center relative items-center">
-        <div className="flex-auto px-5 py-16 rounded-md md:shadow-xl shadow-none max-w-md">
+        <div className="flex-auto bg-white px-5 py-16 rounded-md md:shadow-xl shadow-none max-w-md">
           <h1 className="text-3xl font-bold text-center">Sign in</h1>
           <h6 className="text-2xs text-center">
             Stay update your daily calorie
@@ -114,7 +115,7 @@ export default function Login() {
             <div className="flex flex-col  my-3">
               <label className="text-xl font-semibold text-left">Email</label>
               <input
-                className="py-1 px-1 w-full border-2 border-blue-400 rounded-md ring-2 ring-offset-blue-400"
+                className="py-1 px-1 w-full border-2 border-blue-400 rounded-md focus:outline-none focus:ring-2 focus:border-blue-500"
                 type="text"
                 name="email"
                 onChange={handleChange}
@@ -127,7 +128,7 @@ export default function Login() {
                 Password
               </label>
               <input
-                className="py-1 px-1 w-full"
+                className="py-1 px-1 w-full border-2 border-blue-400 rounded-md focus:outline-none focus:ring-2 focus:border-blue-500"
                 type="password"
                 name="pass"
                 onChange={handleChange}
@@ -139,7 +140,7 @@ export default function Login() {
             {!successLogin ? <AlertFailedLogin /> : null}
             <button
               onClick={handleSubmit}
-              className="bg-blue-500 my-5 py-2 rounded-md text-white font-bold hover:bg-yellow-light w-full"
+              className="bg-blue-500 my-5 py-2 rounded-md text-white font-bold hover:bg-yellow-light w-full focus:ring-2 focus:outline-none"
             >
               Login
             </button>

@@ -25,7 +25,7 @@ export default function FoodManagement(props) {
   return (
     <div className={`h-full  ${Styles.backgroundPattren}`}>
       <Header />
-      <div className="max-w-screen-lg h-screen mx-auto">
+      <div className="max-w-screen-lg mx-auto">
         <div className={`bg-white p-4 my-8 mx-1 rounded-md shadow-lg`}>
           <div className="flex justify-between mb-4">
             <h1 className="text-lg font-bold">Food Management</h1>

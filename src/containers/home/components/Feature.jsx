@@ -25,9 +25,7 @@ export default function Feature() {
           A Powerful Tool for Achieve Your Goal
         </h1>
         <p className="font-thin">
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It
-          has roots in a piece of classical Latin literature from 45 BC, making
-          it over 2000 years old.
+          Tool ini sangat powerfull untuk mencapai tujuan anda.
         </p>
       </div>
       <div className="flex flex-col md:flex-row">
@@ -40,10 +38,9 @@ export default function Feature() {
           <SparklesIcon className="h-10 w-10 text-blue-400 mx-auto" />
           <h3 className="font-semibold text-xl">Stay Focus Your Goal</h3>
           <p>
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters
+            Tetapkan tujuan anda dengan menggunakan aplikasi ini. Anda dapat
+            mengatur kebutuhan kalori harian anda, makanan yang anda inginkan,
+            dan juga jadwal makan anda.
           </p>
         </div>
         <div
@@ -55,10 +52,9 @@ export default function Feature() {
           <BookmarkIcon className="h-10 w-10 text-blue-400 mx-auto" />
           <h3 className="font-semibold text-xl">Save Your Food</h3>
           <p>
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters
+            Simpan daftar makanan anda dalam aplikasi ini. Anda dapat
+            menambahkan makanan yang anda sukai, mengedit makanan yang sudah
+            ditambahkan, dan menghapus makanan yang anda sukai.
           </p>
         </div>
         <div
@@ -70,10 +66,9 @@ export default function Feature() {
           <CalculatorIcon className="h-10 w-10 text-blue-400 mx-auto" />
           <h3 className="font-semibold text-xl">Count Your Calories</h3>
           <p>
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters
+            Hitung kalori yang anda butuhkan berdasarkan Harris-Bennedict
+            Equation, lalu pilih aktivitas berdasarkan harian Dan lihat jumlah
+            kalori yang anda butuhkan untuk makan.
           </p>
         </div>
       </div>
