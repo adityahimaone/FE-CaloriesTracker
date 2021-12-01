@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { PlusIcon } from "@heroicons/react/solid";
@@ -7,13 +7,21 @@ import TableRow from "./components/TableRow";
 import ModalAdd from "./components/ModalAdd";
 import gqlFood from "../../graphql/GqlFoodManagement";
 import LoadingMain from "../../components/LoadingMain";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function FoodManagement(props) {
   const { handleAddFood, LoadingAddFood, DataGetFoods, loadingGetFoods } =
     gqlFood();
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.login);
+  useEffect(() => {
+    if (isAuth.isLoggedIn) {
+      // navigate("/");
+    } else {
+      navigate("/noAuth");
+    }
+  }, [isAuth]);
   return (
     <div className={`h-full  ${Styles.backgroundPattren}`}>
       <Header />
@@ -24,7 +32,6 @@ export default function FoodManagement(props) {
             <a
               href="#add-modal"
               className="flex items-center text-md font-semibold rounded-md bg-blue-light text-white px-2"
-              onClick={handleShow}
             >
               <span>
                 <PlusIcon className="h-5 w-5" />

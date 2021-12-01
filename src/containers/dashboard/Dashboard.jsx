@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import "react-circular-progressbar/dist/styles.css";
 import Footer from "../../components/Footer";
@@ -9,8 +9,11 @@ import TabsGroup from "./components/TabsGroup";
 import ModalSaveCalorie from "./components/ModalSaveCalorie";
 import GqlDashboard from "../../graphql/GqlDashboard";
 import gqlFood from "../../graphql/GqlFoodManagement";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const {
     DataGetUser,
     DataGetCountHistory,
@@ -22,6 +25,16 @@ export default function Dashboard() {
     LoadingEditCalorieNeed,
   } = GqlDashboard();
   const { DataGetFoods } = gqlFood();
+
+  // no auth
+  const isAuth = useSelector((state) => state.login);
+  useEffect(() => {
+    if (isAuth.isLoggedIn) {
+      // navigate("/");
+    } else {
+      navigate("/noAuth");
+    }
+  }, [isAuth]);
 
   return (
     <div className={Styles.backgroundPattren}>

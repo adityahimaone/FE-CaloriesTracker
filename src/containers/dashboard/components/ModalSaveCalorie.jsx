@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { FireIcon } from "@heroicons/react/solid";
 import Loading from "../../../components/Loading";
 import AlertInput from "../../../components/AlertInput";
+import { useSelector } from "react-redux";
 
 export default function ModalSaveCalorie(props) {
+  const userLogin = useSelector((state) => state.login);
   const initInput = {
     weight: 0,
     height: 0,
@@ -81,7 +83,7 @@ export default function ModalSaveCalorie(props) {
       height: inputValue.height,
     };
     if (calories !== 0) {
-      props.editCalorie(id_user, newCalories);
+      props.editCalorie(userLogin.id, newCalories);
       setInputValue(initInput);
     }
   };

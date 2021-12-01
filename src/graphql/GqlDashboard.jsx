@@ -6,6 +6,7 @@ import {
   useMutation,
   useSubscription,
 } from "@apollo/client";
+import { useSelector } from "react-redux";
 
 const GetFoodHistory = gql`
   query MyQuery2($id_user: Int!) {
@@ -77,13 +78,15 @@ const GetCountHistory = gql`
 `;
 
 export default function GqlDashboard() {
+  const userLogin = useSelector((state) => state.login);
+  console.log("userLogin",userLogin);
   // Get Food History Now
   const {
     loading: LoadingGetHistory,
     error: ErrGetHistory,
     data: DataGetHistory,
   } = useQuery(GetFoodHistory, {
-    variables: { id_user: 1 },
+    variables: { id_user: userLogin.id },
   });
 
   // Get User
@@ -92,7 +95,7 @@ export default function GqlDashboard() {
     error: ErrGetUser,
     data: DataGetUser,
   } = useQuery(GetUser, {
-    variables: { id_user: 1 },
+    variables: { id_user: userLogin.id },
   });
 
   // Add Food History
