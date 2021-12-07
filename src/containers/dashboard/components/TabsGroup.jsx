@@ -6,13 +6,15 @@ import { useDispatch } from "react-redux";
 import { setDashboard, setFoodIntake } from "../../../store/dashboardSlice";
 import LoadingMain from "../../../components/LoadingMain";
 import Loading from "../../../components/Loading";
+import { useSelector } from "react-redux";
 
 export default function TabsGroup(props) {
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.login);
 
   const [state, setState] = useState({ selectFood: 0 });
 
-  const id_user = 1;
+  // const id_user = 1;
   const onChange = (e) => {
     setState({
       ...state,
@@ -23,10 +25,10 @@ export default function TabsGroup(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     const newHistory = {
-      id_user: id_user,
+      id_user: userLogin.id,
       id_food: newState,
     };
-    props.addHistory(id_user, newHistory);
+    props.addHistory(userLogin.id, newHistory);
     setState({ selectFood: 0 });
   };
 

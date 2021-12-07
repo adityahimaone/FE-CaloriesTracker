@@ -1,4 +1,3 @@
-import React from "react";
 import { gql, useQuery, useLazyQuery } from "@apollo/client";
 
 const login = gql`

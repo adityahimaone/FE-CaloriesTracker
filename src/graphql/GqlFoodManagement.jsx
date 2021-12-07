@@ -1,4 +1,3 @@
-import React from "react";
 import { gql, useQuery, useMutation, useSubscription } from "@apollo/client";
 
 const GetFoodsQuery = gql`
@@ -105,9 +104,9 @@ export default function GqlFoodManagement() {
     });
   };
 
-  console.log("func", handleAddFood);
-  console.log("DataGetFoods", DataGetFoods);
-  console.log("DataGetFoods Specific", DataGetFoods);
+  // console.log("func", handleAddFood);
+  // console.log("DataGetFoods", DataGetFoods);
+  // console.log("DataGetFoods Specific", DataGetFoods);
 
   return {
     loadingGetFoods,
